@@ -986,12 +986,11 @@ The fundamental unit of computation is the \emph{interaction block}, representin
     showstringspaces=false,
     breakatwhitespace=true
 ]
-interaction classify_sentiment:
-    args: 
-      - text
-    preamble: "Classify the sentiment of the given text."
-    input: "'''\n{text}\n'''"
-    output: enum {positive, negative, neutral}
+def classify_sentiment(text: str)
+    Classify the sentiment of the given text  # Preamble (write implicit)
+    Q: '''\n{text}\n'''                       # Input (write implicit)
+    read A: {positive|negative|neutral}       # Output
+end def
 \end{lstlisting}
 
 This interaction encapsulates the context, instruction, and output constraint as a single analyzable unit.
@@ -999,6 +998,7 @@ This interaction encapsulates the context, instruction, and output constraint as
 % \paragraph{Context Scopes.}
 Context scopes define which information is visible to the model:
 
+%TODO
 \begin{lstlisting}[
     backgroundcolor=\color{gray!10},
     basicstyle=\ttfamily\small,
@@ -1029,12 +1029,16 @@ Outputs are constrained using formal specifications, such as enumerations, schem
     showstringspaces=false,
     breakatwhitespace=true
 ]
-interaction extract_entities:
-    args: 
-        - document
-    preamble: "Extract entities from the given document"
-    input: "'''\n{text}\n'''"
-    output: schema JSON[List[String]]
+import json
+
+...
+
+def extract_entities(document: str): json[list[str]]
+    Extract entities from the given document                 # Preamble (write implicit)
+    '''\n{text}\n'''                                         # Input
+    let entities: json[list[str]] = read Entities:\n{json[list[str]]}  # Output "```json\n...\n```"
+    return entities
+end def
 \end{lstlisting}
 
 More expressive constraints can be defined using grammars:
@@ -1049,7 +1053,24 @@ More expressive constraints can be defined using grammars:
     showstringspaces=false,
     breakatwhitespace=true
 ]
-output: grammar SQL_Statement
+import sql
+
+...
+
+def generate_sql(entities: list(str), attributes: mapping(str, list[str], relationships: list[tuple[str, str, str])
+    Create a SQL database given the following entities and relationships.
+    Entities
+    for let e: str in entities
+        {e}:
+        for let a: str in attributes[e]
+        \t- {a}
+        end for
+    end for
+    for let e1: str, e2: str, r: str in relationships
+        {r}({e1}, {e2})
+    end for
+    let code: sql[str] = read {sql[str]}
+end def
 \end{lstlisting}
 
 % \paragraph{Control Flow.}
@@ -1065,11 +1086,29 @@ output: grammar SQL_Statement
     showstringspaces=false,
     breakatwhitespace=true
 ]
-if detect_query(message):
-    docs = search(message)
+def search(query: str): list[str]
+    ...
+end def
+
+def answer_with_docs(message: str, docs: list[str]): str
+    ...
+end def
+
+def answer(message: str): str
+    ...
+end def
+
+...
+
+let response: str
+if detect_query(message) do
+    let docs: list[str] <- search(message)
     response = answer_with_docs(message, docs)
-else:
-    response = generic_response(message)
+else
+    response = (message)
+endif
+
+...
 \end{lstlisting}
 
 % \paragraph{Observation and Recovery Hooks.}
@@ -1085,13 +1124,32 @@ Execution can be monitored and adapted dynamically.
     showstringspaces=false,
     breakatwhitespace=true
 ]
-interaction generate_code:
-    ...
-    output: grammar Python_Function
+import python
 
-on error:
-    retry(max=2)
-    fallback(default_code)
+def correct(spec: str, code: python[str], error str): python[str]
+    ...
+end def
+
+...
+
+def generate_code(spec: str, tests: list[callable[python[str]]): str
+    Write a Python function with the following specifications.  # Preamble
+    {spec}                                                      # Input
+    let code: python[str] = read {python[str]}
+    let counter: int = 0
+    try
+        label retry
+        for let t: callable in test:
+            t(code)
+        on error:
+            code = correct(spec, code, error)
+            if counter <= 2
+                counter += 1
+                goto retry
+            end if
+        end on
+    end try
+end def
 \end{lstlisting}
 
 % \subsubsection{Execution Model}
@@ -1112,6 +1170,8 @@ This execution model introduces a clear separation between conventional control 
 % \paragraph{Example.}
 Consider a two-step workflow:
 
+% TODO from here
+
 \begin{lstlisting}[
     backgroundcolor=\color{gray!10},
     basicstyle=\ttfamily\small,
@@ -1122,9 +1182,10 @@ Consider a two-step workflow:
     showstringspaces=false,
     breakatwhitespace=true
 ]
-sentiment = classify_sentiment(review)
-if sentiment == "negative":
-    summary = summarize_issue(review)
+let sentiment = classify_sentiment(review)
+if sentiment == "negative" do
+    let summary = summarize_issue(review)
+endif
 \end{lstlisting}
 
 This corresponds to two interaction blocks evaluated sequentially, with explicit data flow between them.
@@ -1147,12 +1208,14 @@ Context is explicitly constructed and scoped for each interaction.
     showstringspaces=false,
     breakatwhitespace=true
 ]
-interaction filter_docs:
-    args: 
-        - query
-    context:
-        include retrieved_docs
-        exclude user_history
+def answer_with_docs(user_message,
+                     documents):
+    Q: Answer the user referring to
+       the documents when appropriate:
+       "{user_message}"
+       Documents: {documents}
+    A: [response]
+end def
 \end{lstlisting}
 
 This avoids interference between unrelated steps and ensures predictable behaviour.
@@ -1171,12 +1234,16 @@ Output validity is defined by conformance to constraints.
     showstringspaces=false,
     breakatwhitespace=true
 ]
-interaction detect_query:
-    args: 
-        - message
-    preamble: ...
-    input: ...
-    output: enum {yes, no}
+def detect_query(message):
+    Q: Is the user asking a query
+       in this message "{message}"?
+    A: {yes|no}
+    if output == "yes" do
+        return true
+    else
+        return false
+    endif
+end def
 \end{lstlisting}
 
 The model is constrained to produce one of the allowed values, ensuring compatibility with downstream control flow.
@@ -1204,7 +1271,12 @@ For example, given a grammar-constrained output:
     showstringspaces=false,
     breakatwhitespace=true
 ]
-output: grammar JSON_API_Call
+def call_api(intent, params):
+    Q: Generate the API call for:
+       intent="{intent}",
+       params={params}
+    A: [call | json_api_call_syntax]
+end def
 \end{lstlisting}
 
 one can ensure that all generated API calls conform to the expected syntax.
