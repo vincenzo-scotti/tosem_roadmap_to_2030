@@ -1872,7 +1872,9 @@ In addition, an explicit attention check was embedded within the survey, asking 
 During data analysis, we further examined response reliability by computing the intra-individual variance across all answers; submissions exhibiting near-zero variance, indicative of repetitive or inattentive behavior, were excluded from the final dataset. 
 We also assessed the internal consistency of the measured constructs using Cronbach’s alpha.
 
-To analyze differences in perceived alignment across the responding roles, we employed a Friedman test to determine whether statistically significant differences exist at the group level, followed by post-hoc pairwise Wilcoxon signed-rank tests comparing the specialized roles against the generic \texttt{contributor} baseline.
+To analyze differences in perceived alignment across roles, we originally planned to employ a Friedman test followed by post-hoc pairwise Wilcoxon signed-rank tests comparing each role against a generic \texttt{contributor} baseline.
+However, the collected responses represented only two roles, \emph{Researcher} ($n = 13$) and \emph{Software engineer} ($n = 7$), with no respondent selecting any of the remaining options.
+As the Friedman test requires at least three groups and the \texttt{contributor} baseline was absent from the data, we instead applied a Mann-Whitney U test, the appropriate non-parametric alternative for two independent samples.
 
 }
 
@@ -2055,6 +2057,13 @@ An interpreter complements \ac{lsl} in multiple ways, like
 \end{enumerate*}
 
 Building on that, we outlined a roadmap that spans foundational directions in language and API design, the development of benchmarks and evaluation frameworks, the creation of efficient interpreter infrastructures, the integration of human-centric feedback and usability studies, and the establishment of standards and ecosystems that can bring order to today’s fragmented practices. This agenda emphasizes that progress requires not only technical innovations but also attention to social, ethical, and organizational challenges, so that trustworthiness, transparency, and societal accountability are built into \ac{llm}-powered systems ({\color{blue}  \ac{genai}ware}) from the outset.
+
+{\color{blue}
+Our survey study, conducted with $20$ practitioners and researchers experienced in \ac{genai}ware development, provides initial empirical support for the relevance of \ac{lsl}.
+Respondents broadly confirmed the practical pain points targeted by \ac{lsl}: $80\%$ agreed that separating deterministic logic from \ac{llm} behaviour would be beneficial~(Q7f; $\bar{x} = 4.05$), and maintaining and debugging \ac{llm} interaction logic were rated as challenging by a clear majority.
+All five proposed \ac{lsl} features were perceived as useful above the neutral midpoint, with built-in output validation and constraint enforcement receiving the highest ratings~($\bar{x} = 4.05$ and $3.95$, respectively).
+Overall, $60\%$ of respondents rated the \ac{dsl} concept as useful or very useful (score~$\geq 4$ on a 1--5 scale; $\bar{x} = 3.70$), while integration with existing toolchains and language flexibility emerged as the primary adoption concerns to be addressed in future work.
+}
 
 % The long-term vision is to embed \ac{llm} scripting and interaction into the broader DevOps lifecycle. In such a future, prompts, data, and scripts will be treated as first-class citizens alongside code, benefiting from the same rigor in versioning, testing, and verification. Verification, monitoring, and human oversight will be embedded throughout development and deployment pipelines, ensuring that reliability and transparency are not afterthoughts but built-in guarantees. This vision requires the construction of sustainable ecosystems in which \ac{llm}-powered systems can be designed, deployed, and maintained with the same degree of trust, robustness, and societal accountability as traditional software.
 
