@@ -613,23 +613,18 @@ However, these tools can turn out to be very helpful for ``debugging a prompt'' 
 \label{sec:known-challenges}
 
 Recent empirical and conceptual studies highlight fundamental challenges in engineering \ac{genai}ware. 
-Although these works address different aspects, such as testing methodologies, developer experience, and output artifacts quality, they collectively reveal consistent patterns that point to deeper structural issues in how \ac{llm} interactions are currently designed and implemented.
+Although these works address different aspects, they collectively reveal consistent patterns that point to deeper structural issues in how \ac{llm} interactions are currently designed and implemented.
 A key difficulty is that prompts lack a predefined grammar, making it hard to reason about their structure and to support standard programming operations such as refactoring or reuse~\cite{10.1145/3544549.3585737}.
 Recent studies highlight that testing and debugging LLM-based systems are fundamentally challenging due to non-determinism and implicit interaction logic, requiring new abstractions beyond traditional software engineering approaches~\cite{10.1145/3806396,DBLP:conf/icse-seip/NaharKBPZB25}.
 
-Unlike traditional software components, \ac{llm}-based components exhibit inherent non-determinism, producing different outputs even under identical inputs and configurations. 
-As a result, correctness can no longer be assessed as a binary property, but rather as a distribution of outcomes across repeated executions. 
-This aspect challenges established assumptions in \ac{se}, particularly in testing, verification, and reproducibility~\cite{10.1145/3806396}.
+Unlike traditional software components, \ac{llm}-based components exhibit inherent non-determinism, producing different outputs even under identical inputs and configurations.
+As a result, correctness can no longer be assessed as a binary property, but rather as a distribution of outcomes across repeated executions, challenging established assumptions in \ac{se}, particularly in testing, verification, and reproducibility~\cite{10.1145/3806396}.
+Furthermore, behavior in \ac{genai}ware is not solely defined by code but emerges from the interaction between prompts, model inference, and surrounding control logic.
+Prompt construction acts as both input specification and behavioral modifier, effectively encoding parts of the system logic in natural language, yet this interaction logic is typically embedded in general-purpose code, where it remains implicit and difficult to analyze or reason about~\cite{10.1145/3806396}.
 
-In \ac{genai}ware, behavior is not solely defined by code but emerges from the interaction between prompts, model inference, and surrounding control logic. 
-Prompt construction acts as both input specification and behavioral modifier, effectively encoding parts of the system logic in natural language. 
-However, this interaction logic is typically embedded in general-purpose code, where it remains implicit and difficult to analyze or reason about~\cite{10.1145/3806396}.
-
-Empirical studies show that developers face persistent and diverse challenges when developing \ac{genai}ware, including prompt design, integration, reproducibility, and output interpretation. 
-Many of these issues are difficult to resolve in practice, with a low proportion of questions receiving accepted solutions and long response times in developer communities~\cite{DBLP:journals/tosem/ChenGCZL25}. 
+Empirical studies show that developers face persistent and diverse challenges when developing \ac{genai}ware, including prompt design, integration, reproducibility, and output interpretation.
+Many of these issues are difficult to resolve in practice, with a low proportion of questions receiving accepted solutions and long response times in developer communities~\cite{DBLP:journals/tosem/ChenGCZL25}.
 These findings indicate that current development practices lack adequate abstractions and methodologies to support reliable engineering of \ac{llm}-based systems.
-Beyond correctness, if we focus on \ac{llm}-generated artifacts, they often exhibit structural quality issues, including incorrect or partial logic, unnecessary complexity, and poor maintainability, even when they satisfy functional requirements. 
-These inefficiencies are diverse and frequently interconnected, complicating integration into larger software systems \cite{DBLP:conf/icsm/AbbassiSNK25}.
 
 Taken together, these findings point to a fundamental gap: the primary source of complexity in \ac{genai}ware lies not only in the models themselves, but also in the interaction logic that governs their use. 
 This logic, expressed through prompt design, context management, and multi-step interactions, is typically implicit, scattered across code, and difficult to analyze, test, and maintain.
