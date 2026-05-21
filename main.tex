@@ -1,0 +1,1945 @@
+%%
+%% This is file `sample-sigconf-authordraft.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% samples.dtx  (with options: `all,proceedings,bibtex,authordraft')
+%%
+%% IMPORTANT NOTICE:
+%%
+%% For the copyright see the source file.
+%%
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from sample-sigconf-authordraft.tex.
+%%
+%% For distribution of the original source see the terms
+%% for copying and modification in the file samples.dtx.
+%%
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+%%
+%%
+%% Commands for TeXCount
+%TC:macro~\cite [option:text,text]
+%TC:macro~\citep [option:text,text]
+%TC:macro~\citet [option:text,text]
+%TC:envir table 0 1
+%TC:envir table* 0 1
+%TC:envir tabular [ignore] word
+%TC:envir displaymath 0 word
+%TC:envir math 0 word
+%TC:envir comment 0 0
+%%
+%% The first command in your LaTeX source must be the \documentclass
+%% command.
+%%
+%% For submission and review of your manuscript please change the
+%% command to \documentclass[manuscript, screen, review]{acmart}.
+%%
+%% When submitting camera ready or to TAPS, please change the command
+%% to \documentclass[sigconf]{acmart} or whichever template is required
+%% for your publication.
+%%
+%%
+\documentclass[manuscript,screen]{acmart}
+% \documentclass[sigconf,authordraft,anonymous=true]{acmart}
+%%
+%% \BibTeX command to typeset BibTeX logo in the docs
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    Bib\TeX}}}
+
+% Packages
+\usepackage{comment}
+\usepackage{csquotes}
+\usepackage[nohyperlinks]{acronym}
+\makeatletter
+\renewcommand{\aclabelfont}[1]{#1} % \renewcommand*\AC@verridelabel[1]{}
+\makeatother
+\usepackage{cleveref}
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage[countmax]{subfloat}
+\usepackage{subcaption}
+\usepackage[inline]{enumitem}
+\usepackage{tcolorbox}
+\usepackage{microtype}
+\usepackage{wrapfig}
+% \usepackage[subtle]{savetrees}
+\usepackage{makecell}
+\usepackage{listings}
+% Commands
+% Definitions
+\acrodef{ai}[AI]{Artificial Intelligence}
+\acrodef{cot}[CoT]{Chain-of-Thought}
+\acrodef{dnn}[DNN]{Deep Neural Network}
+\acrodefplural{dnn}[DNNs]{Deep Neural Networks}
+\acrodef{dsl}[DSL]{Domain Specific Language}
+\acrodef{genai}[GenAI]{Generative Artificial Intelligence}
+\acrodef{hci}[HCI]{Human-Computer Interaction}
+\acrodef{llm}[LLM]{Large Language Model}
+\acrodefplural{llm}[LLMs]{Large Language Models}
+\acrodef{lsl}[LSL]{LLM Scripting Language}
+\acrodef{rag}[RAG]{Retrieval Augmented Generation}
+\acrodef{repl}[REPL]{Read–eval–print loop}
+\acrodef{se}[SE]{Software Engineering}
+\acrodef{xai}[XAI]{Explainable AI}
+\acrodef{nlo}[NLO]{Natural Language Outlines}
+
+%% Rights management information.  This information is sent to you
+%% when you complete the rights form.  These commands have SAMPLE
+%% values in them; it is your responsibility as an author to replace
+%% the commands and values with those provided to you when you
+%% complete the rights form.
+\setcopyright{acmlicensed}
+\copyrightyear{2025}
+\acmYear{2025}
+\acmDOI{XXXXXXX.XXXXXXX}
+%% These commands are for a PROCEEDINGS abstract or paper.
+% \acmConference[FSEws2025]{Future Software Engineering Workshop 2025}{June 26--27, 2025}{Trondheim, Norway}
+%%
+%%  Uncomment \acmBooktitle if the title of the proceedings is different
+%%  from ``Proceedings of ...''!
+%%
+%%\acmBooktitle{Woodstock '18: ACM Symposium on Neural Gaze Detection,
+%%  June 03--05, 2018, Woodstock, NY}
+\acmISBN{978-1-4503-XXXX-X/2026/01}
+
+
+%%
+%% Submission ID.
+%% Use this when submitting an article to a sponsored event. You'll
+%% receive a unique submission ID from the organizers
+%% of the event, and this ID should be used as the parameter to this command.
+%%\acmSubmissionID{123-A56-BU3}
+
+%%
+%% For managing citations, it is recommended to use bibliography
+%% files in BibTeX format.
+%%
+%% You can then either use BibTeX with the ACM-Reference-Format style,
+%% or BibLaTeX with the acmnumeric or acmauthoryear sytles, that include
+%% support for advanced citation of software artefact from the
+%% biblatex-software package, also separately available on CTAN.
+%%
+%% Look at the sample-*-biblatex.tex files for templates showcasing
+%% the biblatex styles.
+%%
+
+%%
+%% The majority of ACM publications use numbered citations and
+%% references.  The command~\citestyle{authoryear} switches to the
+%% "author year" style.
+%%
+%% If you are preparing content for an event
+%% sponsored by ACM SIGGRAPH, you must use the "author year" style of
+%% citations and references.
+%% Uncommenting
+%% the next command will enable that style.
+%%\citestyle{acmauthoryear}
+
+
+%%
+%% end of the preamble, start of the body of the document source.
+\begin{document}
+
+%%
+%% The "title" command has an optional parameter,
+%% allowing the author to define a "short title" to be used in page headers.
+% \title{LLM Scripting Language: A Roadmap for Tamed Interactions with Large Language Models }
+\title{A Roadmap for Tamed Interactions with Large Language Models }
+
+%%
+%% The "author" command and its associated commands are used to define
+%% the authors and their affiliations.
+%% Of note is the shared affiliation of the first two authors, and the
+%% "authornote" and "authornotemark" commands
+%% used to denote shared contribution to the research.
+
+\author{Vincenzo Scotti}
+\email{vincenzo.scotti@kit.edu}
+\orcid{0000-0002-8765-604X}
+\affiliation{%
+  \institution{Karlsruhe Institute of Technology (KIT)}
+  \city{Karlsruhe}
+  \country{Germany}
+}
+
+\author{Jan Keim}
+\email{jan.keim@kit.edu}
+\orcid{0000-0002-8899-7081}
+\affiliation{%
+  \institution{Karlsruhe Institute of Technology (KIT)}
+  \city{Karlsruhe}
+  \country{Germany}
+}
+
+\author{Tobias Hey}
+\email{hey@kit.edu}
+\orcid{0000-0003-0381-1020}
+\affiliation{%
+  \institution{Karlsruhe Institute of Technology (KIT)}
+  \city{Karlsruhe}
+  \country{Germany}
+}
+
+\author{Andreas Metzger}
+\email{andreas.metzger@paluno.uni-due.de}
+\orcid{0000-0002-4808-8297}
+\affiliation{%
+  \institution{Ruhr Institute for Software Technology (paluno), University of Duisburg-Essen}
+  \city{Essen}
+  \country{Germany}
+}
+
+\author{Anne Koziolek}
+\email{koziolek@kit.edu}
+\orcid{0000-0002-1593-3394}
+\affiliation{%
+  \institution{Karlsruhe Institute of Technology (KIT)}
+  \city{Karlsruhe}
+  \country{Germany}
+}
+
+\author{Raffaela Mirandola}
+\email{raffaela.mirandola@kit.edu}
+\orcid{0000-0003-3154-2438}
+\affiliation{%
+  \institution{Karlsruhe Institute of Technology (KIT)}
+  \city{Karlsruhe}
+  \country{Germany}
+}
+
+%%
+%% By default, the full list of authors will be used in the page
+%% headers. Often, this list is too long, and will overlap
+%% other information printed in the page headers. This command allows
+%% the author to define a more concise list
+%% of authors' names for this purpose.
+\renewcommand{\shortauthors}{Scotti et al.}
+
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
+\begin{abstract}
+
+% We are witnessing a bloom of AI-powered software driven by Large Language Models (LLMs).
+% Although the applications of these LLMs are impressive and seemingly countless, their unreliability hinders adoption.
+% In fact, the tendency of LLMs to produce faulty or hallucinated content makes them unsuitable for automating workflows and pipelines.
+% In this regard, Software Engineering (SE) provides valuable support, offering a wide range of formal tools to specify, verify, and validate software behaviour.
+% Such SE tools can be applied to define constraints over LLM outputs and, consequently, offer stronger guarantees on the generated content.
+% In this paper, we argue that the development of a Domain Specific Language (DSL) for scripting interactions with LLMs using an LLM Scripting Language (LSL) may be key to improve AI-based applications.
+% Currently, LLMs and LLM-based software ({\color{blue}  \acs{genai}ware}) still lack reliability, robustness, and trustworthiness, and the tools or frameworks to cope with these issues suffer from fragmentation.
+% In this paper, we present our vision of LSL.
+% With LSL, we aim to address the limitations above by exploring ways to control LLM outputs, enforce structure in interactions, and integrate these aspects with verification, validation, and explainability.
+% Our goal is to make LLM interaction programmable and decoupled from training or implementation.
+
+{\color{blue}
+
+\acp{llm} are increasingly embedded in software systems (\acs{genai}ware), enabling new forms of automation and interaction. 
+However, their probabilistic nature and reliance on prompt programming introduce challenges for reliability, robustness, and maintainability. 
+In current practice, prompt-related concerns, such as context management, interaction logic, and output validation, are embedded in general-purpose code, resulting in implicit and hard-to-analyze and maintain systems.
+In this paper, we argue that prompt programming should be treated as a first-class \ac{se} concern and propose the \ac{lsl}, a \ac{dsl} for structuring interactions with \acp{llm} as analyzable programs. 
+\ac{lsl} introduces explicit abstractions for interaction blocks, context scopes, output constraints, and control flow, enabling a clear separation between deterministic logic and probabilistic model behavior, and providing guarantees on structural correctness. 
+From an \ac{se} perspective, \ac{lsl} supports a more disciplined development process by making interaction logic explicit, analyzable, and amenable to verification and validation techniques. 
+At the same time, \ac{lsl} acts as a form of cognitive scaffolding, externalizing prompt design and interaction structure into a programmable artifact that reduces implicit documentation and reasoning and thereby supports systematic debugging, evolution and reuse.
+We illustrate these properties on a structured generation scenario, showing how explicit interaction modeling improves failure localization and interaction transparency. 
+While \ac{lsl} does not guarantee semantic correctness or factual accuracy of \ac{llm} outputs, it provides a principled foundation for engineering prompt-based systems with improved analyzability and maintainability.
+
+}
+
+\end{abstract}
+
+\acresetall{}
+
+%%
+%% The code below is generated by the tool at http://dl.acm.org/ccs.cfm.
+%% Please copy and paste the code instead of the example below.
+%%
+\begin{CCSXML}
+<ccs2012>
+<concept>
+<concept_id>10010147.10010178.10010179</concept_id>
+<concept_desc>Computing methodologies~Natural language processing</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+<concept>
+<concept_id>10011007.10011006.10011050.10011017</concept_id>
+<concept_desc>Software and its engineering~Domain specific languages</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Computing methodologies~Natural language processing}
+\ccsdesc[500]{Software and its engineering~Domain specific languages}
+
+%%
+%% Keywords. The author(s) should pick words that accurately describe
+%% the work being presented. Separate the keywords with commas.
+\keywords{SE4AI, LLM, LSL, DSL, NLP}
+%% A "teaser" image appears between the author and affiliation
+%% information and the body of the document, and typically spans the
+%% page.
+
+% \received{dd Mmmm yyyy}
+% \received[revised]{dd Mmmm yyyy}
+% \received[accepted]{dd Mmmm yyyy}
+
+%%
+%% This command processes the author and affiliation and title
+%% information and builds the first part of the formatted document.
+\maketitle
+
+
+\section{Introduction}
+
+{\color{blue}
+
+The advancements in \ac{genai}~\cite{llm_se_roadmap}, and in particular \acp{llm}~\cite{llm_survey}, are rapidly reshaping how \ac{se} addresses software systems design and development.
+Beyond their role as development-time assistants or copilots~\cite{github2023copilot}, \acp{llm} are increasingly embedded directly into software products to realize functionality that would otherwise be infeasible or too expensive to implement~\cite{llm_se_roadmap}.
+In such \emph{\ac{genai}ware} systems~\cite{llm_se_roadmap}, foundation models are invoked at runtime as integral software components, powering capabilities such as conversational interfaces, information retrieval, content generation, and adaptive decision support~\cite{DBLP:journals/corr/abs-2406-10300}.
+As a result, software systems are no longer defined solely by code and data, but also by \emph{prompts} (i.e., natural language instructions) that govern the behavior of these models.
+At the same time, developers are now facing new challenges arising from inconsistencies and quality issues in generated artifacts as well as development and maintainability problems~\cite{10.1145/3806396,DBLP:journals/tosem/ChenGCZL25,DBLP:conf/icsm/AbbassiSNK25}
+
+Recent research has observed that prompts in \ac{genai}ware are no longer simple textual inputs, but are becoming meticulously engineered parts of the codebase, effectively functioning as programs themselves~\cite{DBLP:journals/pacmse/LiangLRM25,llm_se_roadmap}.
+These prompts encode \emph{task definitions}, \emph{interaction protocols}, \emph{constraints}, and \emph{expectations about model outputs}, and they critically shape the behavior of the overall system.
+More broadly, \ac{genai}ware development increasingly involves context engineering~\cite{DBLP:journals/corr/abs-2507-13334}, which consists in the construction, scoping, and evolution of the information provided to an \ac{llm}, and output constraining~\cite{DBLP:conf/emnlp/GengJP023,DBLP:conf/nips/ParkWBPD24}, which consists of specifying structural and contractual expectations on generated results (either to validate the output or to enforce specific behaviour).
+For simplicity, we refer to this combination of prompt design, context management, and output constraints as \emph{prompt programming}.
+
+Together, the prompt programming components determine how foundation models behave within software workflows.
+Recent work in \ac{hci} further reinforces this view by showing that prompt programming exhibits properties analogous to software development, despite lacking a formal grammar or programming language structure~\cite{10.1145/3544549.3585737}.
+However, despite their importance, these elements are still largely treated as ad-hoc strings or implicit conventions, embedded in general-purpose code and refined through trial and error.
+This practice makes these prompt-based systems fragile, hard to debug, difficult to evolve, and challenging to reason about from a \ac{se} perspective~\cite{llm_se_roadmap}.
+
+This situation exposes a fundamental \ac{se} gap, and the root of the problem is not expressiveness but \emph{analyzability}.
+Existing languages and frameworks are expressive enough: prompt templates can be written in Python, output validators can be defined with libraries such as Pydantic, and orchestration pipelines can be assembled with frameworks such as LangChain.
+What these approaches cannot provide is a clear separation between deterministic software logic and probabilistic model behavior.
+When prompt programming is embedded in general-purpose code, interaction logic becomes implicit, verification targets become unclear, and static analysis is practically infeasible, because conventional control flow is interleaved with probabilistic \ac{llm} invocations in ways the host language cannot reason about.
+
+In \ac{genai}ware systems, developers therefore have limited means to inspect the structure of interactions with \acp{llm}, to enforce invariants on generated outputs, or to reason about the behavior of prompt-driven workflows over time.
+As systems grow in complexity, this lack of analyzable structure undermines reliability, maintainability, and trustworthiness, and prevents the systematic application of good \ac{se} practices such as verification, validation, and lifecycle management.
+
+In this paper, we argue that addressing these challenges requires treating prompt programming as a \emph{first-class} \ac{se} concern, and that doing so demands dedicated programming abstractions, not merely libraries, that make prompt behavior
+\begin{enumerate*}[label=(\roman*)]
+    \item \emph{separable}: the LLM interactions (prompts, scaffolding code etc.) should be clearly separated from code that is not related to prompt programming;  
+  \item \emph{inspectable}: the structure and intent of each interaction is explicit and human-readable;
+  \item \emph{analyzable}: static and runtime analysis can reason about control flow, reachability, and contracts; and
+  \item \emph{governable}: output constraints and execution invariants are part of the language semantics, not bolted on as external validators.
+\end{enumerate*}
+As such, we propose the concept of \ac{lsl}: a \ac{dsl} designed to express prompt-based interactions as structured programs.
+Rather than replacing general-purpose programming languages or existing \ac{genai} frameworks, \ac{lsl} defines a \emph{restricted interaction layer} that sits between deterministic software and probabilistic foundation models.
+% TODO: is the following too much?
+In this sense, \ac{lsl} is intended to play a role analogous to SQL for databases or regular expressions for pattern matching: it does not supersede host languages, but provides a specialized abstraction that makes reasoning, optimization, and verification tractable in ways that would be impractical in unrestricted general-purpose code.
+
+\ac{lsl} is intended to define prompts as executable specifications.
+It provides constructs to structure interactions with \acp{llm}, manage and scope context, constrain outputs, and orchestrate multi-step workflows involving both model invocations and conventional software components.
+By making prompt logic explicit and declarative, \ac{lsl} enables reasoning about the structure and control flow of \ac{genai}ware interactions, and opens the door to applying established \ac{se} techniques (such as static analysis, runtime validation, testing, and monitoring) at the level of prompt programs.
+While, \ac{lsl} does not aim to guarantee semantic correctness or factual truthfulness of model outputs, it offers structural guarantees about interactions, contracts, and execution paths, thereby improving engineering control over prompt-driven systems.
+
+The novelty of this work lies exactly in reframing prompt programming into a first-class programming model. 
+While existing frameworks provide mechanisms for prompt templating, structured outputs, and workflow orchestration, they treat these concerns as library-level constructs embedded in general-purpose code. 
+In contrast, \ac{lsl} elevates interactions with the \ac{llm} to explicit, analyzable program artifacts, where context management, output constraints, and control flow are integrated into the language semantics. 
+This enables forms of reasoning—such as static analysis of interaction structure, verification of workflow properties, and systematic enforcement of interaction contracts—that are not achievable when prompt logic remains implicit within host languages.
+In this sense, \ac{lsl} is not a convenience layer over existing tooling, but a shift in abstraction boundary from ``using \acp{llm} inside programs'' to ``programming interactions with \acp{llm} as programs''.
+
+From a human–\ac{ai} interaction perspective, \ac{lsl} follows a mixed-initiative approach.
+Pure natural language is flexible but semantically unstable across executions; pure code is rigorous but too rigid to concisely express domain intent directed at a probabilistic model.
+\ac{lsl} occupies the productive middle ground: natural language remains central for expressing task intent and domain knowledge, while lightweight formal structure stabilizes and constrains that intent, making it amenable to analysis and enforcement.
+% In this way, \ac{lsl} acts as a cognitive and technical scaffold for prompt programming, answering the need for both expressiveness and engineering discipline in \ac{genai}ware development.
+
+This paper presents a vision and research roadmap for \ac{lsl} as a prompt-programming language for \ac{genai}ware.
+We position \ac{lsl} within the broader landscape of \ac{genai}ware development, clarify its scope and intended guarantees, and outline how it can support reliability, robustness, and trustworthiness in prompt-based systems.
+By reframing prompts as programs and treating prompt programming as a core \ac{se} concern, we aim to contribute to the foundations needed to engineer \ac{genai}ware systems with the same discipline expected of traditional software.
+
+}
+
+We divide the rest of this vision paper into the following sections.
+In \Cref{sec:background}, we recap the essentials about \acp{llm}.
+In \Cref{sec:sota}, we summarise the main work related to ours  {\color{blue}and position our contribution}.
+In \Cref{sec:llmscriptinglanguage}, we describe \ac{lsl} in detail.
+{\color{blue} In \Cref{sec:illustrative-example}, we present an application example to illustrate the use of \ac{lsl}.}
+In \Cref{sec:opportunities} and \Cref{sec:challenges}, we comment, respectively, on the future opportunities and challenges we foresee.
+{\color{blue} In \Cref{sec:evaluation} .}
+In \Cref{sec:roadmap}, we present a research roadmap towards realizing the vision of \ac{lsl}.
+Finally, in \Cref{sec:conclusion}, we summarize our considerations.
+
+\section{Background}
+\label{sec:background}
+
+In this section, we provide an overview of \acp{llm} (\Cref{sec:overview}), highlighting capabilities (\Cref{sec:capabilities}) and limitations (\Cref{sec:limitations}).
+
+\subsection{Overview}
+\label{sec:overview}
+
+% Language models for for generating and scoring text
+% Pretraining
+% Instruction/Chatbot tuning
+% Code
+% Multimodality (but out of scope at the moment, or is it?)
+% Stress statelessness
+
+
+\acp{llm} are \acp{dnn} trained on massive amounts of data to learn a probabilistic generative model of text.
+The underlying \ac{dnn} of a \ac{llm} is a Transformer~\cite{DBLP:conf/nips/VaswaniSPUJGKP17}, a \acp{dnn} designed to process sequential data, like sequences of text tokens\footnote{Tokens are the basic units processed by a \ac{llm} (e.g., words, sub-words, or characters).}, through the \emph{self-attention mechanisms}~\cite{DBLP:conf/nips/VaswaniSPUJGKP17}.
+This Transformer architecture enables \acp{llm} to capture long and complex dependencies throughout the input text as well as memorise and recall a large amount of information, allowing the generation of highly coherent and contextually relevant text.
+
+We mainly distinguish these \acp{llm} based on their size, computed in the number of parameters of the underlying \ac{dnn}, since, usually, their capabilities depend on the size of the model and the amount of training data.
+Bigger and more capable models, including closed-access models such as \emph{GPT} or \emph{ChatGPT}~\cite{DBLP:journals/corr/abs-2303-08774,DBLP:journals/corr/abs-2410-21276} and \emph{Gemini}~\cite{DBLP:journals/corr/abs-2312-11805,DBLP:journals/corr/abs-2403-05530}, are hundreds or thousands of billions of parameters large.
+Smaller models, on the other hand, have only up to tens of billions of parameters.
+These include open-access models such as \emph{DeepSeek}~\cite{DBLP:journals/corr/abs-2401-02954,DBLP:journals/corr/abs-2405-04434,DBLP:journals/corr/abs-2412-19437}, \emph{Llama}~\cite{DBLP:journals/corr/abs-2307-09288,DBLP:journals/corr/abs-2407-21783}, \emph{Vicuna}~\cite{lmsys2023vicuna}, \emph{Mistral}~\cite{DBLP:journals/corr/abs-2310-06825,DBLP:journals/corr/abs-2401-04088}, and \emph{Gemma}~\cite{DBLP:journals/corr/abs-2403-08295,DBLP:journals/corr/abs-2408-00118}.
+The latter group represents a set of highly valuable alternatives for research and application development that, under proper tweaking, can rival the bigger ones.
+Moreover, these open models are often also released in larger versions~\cite{DBLP:journals/corr/abs-2412-19437,DBLP:journals/corr/abs-2407-21783,DBLP:journals/corr/abs-2401-04088}.
+
+Open-access \acp{llm} are mainly distributed, sharing the neural network weights learned during the pre-training.
+Often, to make these pre-trained models usable as assistants (like ChatGPT), they are \emph{fine-tuned} (i.e., refined via further training) to behave as \emph{instruction-following} agents or \emph{chatbot-assistants}~\cite{DBLP:conf/iclr/SanhWRBSACSRDBX22,DBLP:journals/corr/abs-2210-11416,DBLP:journals/csur/ScottiST24} by training on conversations (or other interactions) where a user and an agent communicate via natural language to solve some tasks.
+Typically, the fine-tuning data is formatted using a specific template, where the input is a sequence composed of:
+\begin{enumerate*}[label=(\arabic*)]
+  \item \emph{system message} (main task instructions, which can also be chatbot directives);
+  \item \emph{user message} (user's input to be processed, question, or request);
+  \item \emph{agent response} (agent's output or response to user's question or request).
+\end{enumerate*}
+Each sample in the data set contains one or more message-response exchanges between the user and the agent (\ac{llm}) covering multiple tasks, multiple steps within a task, or to handle user corrections.
+Alternatively, other models are distributed as coding assistants, like in the case of \emph{Copilot}~\cite{github2023copilot} or \emph{Code Llama}~\cite{DBLP:journals/corr/abs-2308-12950}, where fine-tuning is used to refine the model on source code generation, which is, however, a capability most pre-trained or assistant \acp{llm} already have.
+Differently from the past years, where fine-tuning was used to adapt a pre-trained model to a very specific task like classification (often modifying the architecture)~\cite{radford2018improving,DBLP:conf/naacl/DevlinCLT19}, nowadays prompting (i.e., instructing the model via natural language) is preferred to solve most problems with \acp{llm} and fine-tuning is applied very rarely. % and preserving the generative nature of the \ac{llm}.
+
+\subsection{Capabilities}
+\label{sec:capabilities}
+
+\begin{comment}
+\begin{figure}[!ht]
+\begin{center}
+    \begin{minipage}[b]{0.49\columnwidth}
+        \centering
+        \subfloat[Legend \label{fig:llm_legend}]{\includegraphics[width=\textwidth]{figures/llm_legend.pdf}} \vspace{1em}
+        \subfloat[Few-shot learning \label{fig:llm_fsl}]{\includegraphics[width=\textwidth]{figures/llm_fsl.pdf}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{.49\columnwidth}
+        \centering
+        \subfloat[Retrieval Augmented Gen. \label{fig:llm_rag}]{\includegraphics[width=\textwidth]{figures/llm_rag.pdf}} \vspace{1em}
+        \subfloat[Chain-of-Thoughts reasoning \label{fig:llm_cot}]{\includegraphics[width=\textwidth]{figures/llm_cot.pdf}}
+    \end{minipage}
+\caption{\ac{llm} usage approaches.}
+\label{fig:llm}
+\end{center}
+\end{figure}
+\end{comment}
+
+% \begin{wrapfigure}{r}{0.5\textwidth}
+\begin{figure}[!ht]
+\begin{center}
+    % \subfloat[Legend \label{fig:llm_legend}]{\includegraphics[width=.972\columnwidth]{figures/llm_legend.pdf}} \\
+    \subfloat[Legend \label{fig:llm_legend}]{\includegraphics[width=.729\columnwidth]{figures/llm_legend.pdf}} \\
+    % \subfloat[Few-shot learning \label{fig:llm_fsl}]{\includegraphics[width=.321\columnwidth]{figures/llm_fsl.pdf}} \hfill
+    % \hspace{5em}
+    \subfloat[Few-shot learning \label{fig:llm_fsl}]{\includegraphics[width=.24075\columnwidth]{figures/llm_fsl.pdf}} \hfill
+    % \subfloat[RAG\label{fig:llm_rag}]{\includegraphics[width=.1605\columnwidth]{figures/llm_rag.pdf}} \hfill
+    \subfloat[RAG\label{fig:llm_rag}]{\includegraphics[width=.24075\columnwidth]{figures/llm_rag.pdf}} \hfill
+    % \subfloat[CoT reasoning \label{fig:llm_cot}]{\includegraphics[width=.321\columnwidth]{figures/llm_cot.pdf}}
+    \subfloat[CoT reasoning \label{fig:llm_cot}]{\includegraphics[width=.24075\columnwidth]{figures/llm_cot.pdf}} % \hspace{5em}
+\caption{\ac{llm} prompting approaches.}
+\label{fig:llm}
+\end{center}
+\end{figure}
+% \end{wrapfigure}
+
+% In context learning for runtime adaptation to unseen tasks and formats
+% RAG for reliable output using
+% CoT reasoning for explainability and pseudo-reasoning
+% Agents for interaction with special/external tools
+% All orthogonal
+
+Auto-regressive (or causal) \acp{llm}, which represent the vast majority of current models, are designed to generate text autoregressively.
+They yield the probability distribution from which to sample the next token one at a time, conditioning the distribution of this next token on all the preceding ones (the context).
+From a practical perspective, \acp{llm} are used by prompting with some prefix text, which may include some instructions for a task or some user input, and generating an output completion by sampling iteratively from the predicted probability distribution.
+
+An \ac{llm} can be prompted to tackle problems in different ways.
+The main prompting approaches, which we report in \Cref{fig:llm}, are:
+\begin{enumerate*}[label=(\roman*)]
+ \item \emph{few-shot learning} (sometimes called in-context learning)~\cite{DBLP:conf/nips/BrownMRSKDNSSAA20},
+ \item \emph{Retrieval Augmented Generation} (RAG)~\cite{DBLP:journals/corr/abs-2312-10997}, and
+ \item \emph{Chain of Thought} (CoT) \emph{reasoning}~\cite{DBLP:conf/nips/KojimaGRMI22}.
+\end{enumerate*}
+Few-shot learning, depicted in \Cref{fig:llm_fsl}, consists of providing additional examples of input-output pairs (the shots) together with the task instructions as part of the prompt, helping the \ac{llm} better \enquote{understand} the task and the expected output format.
+This is an example of the ability of \acp{llm} to generalize from limited data.
+RAG, depicted in \Cref{fig:llm_rag}, consists of automatically extending the input context by integrating information coming from external knowledge sources and, thus, allowing the model to ground its output responses in this relevant information.
+CoT reasoning, depicted in \Cref{fig:llm_cot}, consists of forcing the model to generate a step-by-step reasoning process before the actual output, giving the model more space for its internal \enquote{reasoning} processes and, thus, improving the performance on complex tasks.
+
+All these typical approaches are orthogonal to each other, meaning that they can be combined for better performance.
+Moreover, none of them is specific to the instruction-following or chatbot assistant fine-tuning and can be used with pre-trained models~\cite{DBLP:conf/nips/BrownMRSKDNSSAA20}.
+
+{\color{blue} 
+
+Beyond their role as passive text generators, \acp{llm} increasingly support deployment in \emph{agentic} configurations, where they operate as (semi-)autonomous decision‑makers~\cite{DBLP:journals/access/AcharyaKB25}. 
+In such settings, a \ac{llm} is prompted with explicit goals, contextual system information, and access to external tools such as search, simulation, or code execution. 
+
+}
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+% Context size and computational time
+% Biases
+% Errors in output and format
+% Hallucinations
+
+\acp{llm} come with very general capabilities and high flexibility, but they are prone to many known issues.
+These issues range from architectural limitations to problems with the generated content.
+
+From the \ac{dnn} architecture side, we identify two main issues:
+\begin{enumerate*}[label=(\arabic*)]
+  \item context size (i.e., the maximum number of consecutive tokens a model can manage) and
+  \item computational complexity.
+\end{enumerate*}
+Even though in the last few years we have seen an increase in techniques designed to extend physically or virtually the maximum context, the problem of having a finite context still remains, and, especially in smaller models, the attention doesn't keep up well when the context grows excessively.
+Moreover, the computation of the \emph{self-attention mechanism} (core of the Transformer) is quadratic in time to the length of the input.
+There are caching mechanisms and alternative implementations~\cite{DBLP:journals/corr/abs-2112-05682,DBLP:conf/nips/DaoFERR22,DBLP:conf/iclr/Dao24} to cope with these issues, but they aren't always usable.
+Besides their architectural limitations, \acp{llm} stay probabilistic models.
+This nature makes them robust to noise and uncertainty, but also prone to errors, as they rely on probability rather than sound values.
+These errors can be caused by different factors, including sensitivity to input variations or ambiguities, and overfitting to training knowledge and patterns.
+
+As a result of the technical issues, the models end up relying on more recent context and may end up generating contradictions, struggling with multi-step reasoning, or simply deviating from the original context and instructions.
+Moreover, due to the probabilistic nature, it may end up generating biased content based on unreliable, outdated, or even unethical information.
+At the same time, this probabilistic nature may lead to similar phenomena called hallucinations.
+An \ac{llm} creates hallucinations to simply generate a completion that is more statistically likely, but the output consists of made-up facts and details that are neither grounded in world knowledge, causing problems with factuality~\cite{DBLP:journals/csur/JiLFYSXIBMF23}, nor in the current context, causing problems with faithfulness~\cite{DBLP:journals/csur/JiLFYSXIBMF23}.
+
+The combination of these issues makes these models unsuitable for tasks that require high reliability, robustness, and trustworthiness, like automating a pipeline using the \ac{llm}.
+Consider the case where we are interested in interaction with a user and generate a call to some external API, and the model fails to close a parenthesis.
+The use of techniques like few-shot learning may help the model to stick to a given pattern (e.g., generate well-formed JSON).
+Similarly, \ac{rag} helps to integrate more updated and reliable knowledge (e.g., refer to the latest news), and \ac{cot} reasoning may help improve accuracy in multi-step reasoning tasks (e.g., solving an equation).
+Yet, all these techniques are nothing but palliatives as they only help to reduce the probability that an error occurs, but without any guarantee that the problem won't show up.
+
+\section{Related Work}
+\label{sec:sota}
+
+In this section, we present the state of the art of \ac{se} support for {\color{blue} \ac{genai}ware} (\Cref{sec:sephorai}), then, we focus on the existing frameworks designed to manage the interaction with \acp{llm} (\Cref{sec:existingframeworks}){\color{blue}, and on the known challenges arising from \ac{genai}ware development, and, finally, we position the proposed \ac{lsl} framework with respect to the state-of-the-art (\Cref{sec:positioningofthiswork})}.
+
+\subsection{SE for AI}
+\label{sec:sephorai}
+
+This paper elaborates on how the introduction of \ac{ai}-powered components within software systems {\color{blue}  (\ac{genai}ware), particularly those relying on \acp{llm},} should be paired with appropriate tools for the development of such software systems that allow for the correct use of such \ac{ai} components.
+As mentioned above, realising this potential at scale requires a paradigm shift in how these applications are developed, deployed, and maintained.
+Yet, current practices, often characterised by ad-hoc prompt engineering and fragmented toolchains, hinder productivity, reproducibility, and the development of robust, enterprise-grade {\color{blue}  \ac{genai}ware}~\cite{DBLP:conf/cain/BarnettKTB024,DBLP:conf/icse-seip/NaharKBPZB25,DBLP:conf/icse/Shao0S00025}.
+{\color{blue} Empirical studies show that developers struggle to engineer \ac{genai}ware in practice, with low resolution rates for prompt-related issues and long debugging cycles, highlighting the lack of appropriate abstractions for structuring interactions~\cite{DBLP:journals/tosem/ChenGCZL25,DBLP:journals/corr/abs-2503-02400,DBLP:journals/pacmse/LiangLRM25}.}
+
+% To provide a possible direction towards a better use of this technology, we envision a scripting language for \acp{llm} as a future ``programming language'' for applications exploiting \ac{ai}.
+% The idea we want to propose with this scripting language is to transcend traditional software by explicitly recognizing \emph{prompts} and \emph{data}, alongside \emph{code}, as first-class citizens in the development lifecycle.
+% Thus, we want to acknowledge that effective \ac{ai} applications are a complex interplay of carefully crafted prompts~\cite{DBLP:journals/corr/abs-2503-02400,DBLP:journals/pacmse/LiangLRM25}, precisely curated data (e.g., via \ac{rag})~\cite{DBLP:conf/cain/BarnettKTB024,DBLP:conf/icse/Shao0S00025}, and robust software logic.
+
+% While individual concepts and isolated tools relating to this concept exist, such as libraries for prompt templating, retrieval tools integrating semantic search  and plug-ins for \ac{ai}-assisted coding, they only cover a subset of the current challenges.
+% Conversely, our work proposes a solution aimed at tackling all these challenges together.
+
+A range of tools and approaches has been proposed to facilitate the development of AI-based software systems, including libraries for prompt templating, retrieval tools that integrate semantic search, and plug-ins for AI-assisted coding. These tools address specific aspects of AI integration, such as handling prompts~\cite{DBLP:journals/corr/abs-2503-02400,DBLP:journals/pacmse/LiangLRM25}, leveraging curated data through techniques like RAG~\cite{DBLP:conf/cain/BarnettKTB024,DBLP:conf/icse/Shao0S00025}, and embedding AI capabilities within traditional software workflows. However, existing solutions often treat these components in isolation. In contrast, our approach seeks to provide a more unified framework that considers \emph{prompts} and \emph{data}, alongside \emph{code}, as first-class citizens in the software development process.
+
+In the 80s, the concept of \emph{literate programming}, where computers could be instructed purely through natural language, seemed science fiction~\cite{DBLP:journals/cj/Knuth84}.
+Yet, we are now moving in that direction: tools like \ac{nlo} offer a novel modality and interaction surface for providing \ac{ai} assistance to developers throughout the software development process~\cite{DBLP:conf/sigsoft/ShiAACGKNPRRRST25}.
+Such \ac{nlo} enable a bidirectional sync between code and natural language, where a developer can change either code or NL and have the LLM automatically update the other.
+In contrast, \ac{lsl} tries to go beyond this iterative approach managed by an assistant and tries to mix together structured code with natural language, so that where necessary the \ac{ai} component can be easily ``programmed'' using a prompt.
+Moreover, the suite coming with \ac{lsl} is thought to integrate also tools for verification and validation, rather than the ``bare'' programming components.
+
+While \acp{llm} are increasingly used in \ac{se}, there is still no fully integrated approach that embeds them across the DevOps lifecycle.
+%Current software development lacks a truly integrated and comprehensive approach that embeds an \ac{llm} into the overall \emph{DevOps} life-cycle.
+Software engineers are dealing with the following problems:
+\begin{enumerate*}
+    \item \emph{Fragmented tooling}: current tools are often disparate, requiring developers to stitch together multiple components, leading to inefficiencies and compatibility issues~\cite{DBLP:conf/icse-seip/NaharKBPZB25}.
+    \item \emph{Lack of standardization}: there's a dearth of industry-wide standards for prompt engineering, promptware architecture, interfaces, and lifecycle management, leading to inconsistent development practices~\cite{DBLP:journals/pacmse/LiangLRM25,lintang_sutawika_2024_14506035,DBLP:conf/icse-seip/NaharKBPZB25}.
+    \item \emph{Limited verification and debugging capabilities}: debugging \ac{llm}-based applications, especially hallucination-related issues, remains challenging due to their black-box nature and probabilistic outputs~\cite{DBLP:conf/icse-seip/NaharKBPZB25,DBLP:journals/corr/abs-2503-00481}.
+    \item \emph{Immature lifecycle management}: While \emph{MLOps} addresses model lifecycle~\cite{10.1145/3747346}, the specific nuances of prompt and data versioning, testing, and deployment within a combined software-prompt-data paradigm are not fully mature~\cite{DBLP:conf/icse-seip/NaharKBPZB25}.
+    % \item offers a holistic environment for developing, testing, deploying, and managing all components of a LLM scripting language-based application~\cite{}.
+\end{enumerate*}
+
+Problems like the fragmented tooling (1) and the lack of standardisation (2) are not new for \ac{se} research.
+In fact, there were similar issues when several cloud providers started appearing, which led to the development of multi-cloud research to help deal with the different interfaces exposed by the vendors~\cite{DBLP:conf/ecsa/BrogiCCDNGPPS16}.
+
+Nevertheless, the \ac{se} community is moving to improve several aspects related to the development of {\color{blue}  \ac{genai}ware}. %\ac{ai}-powered software.
+Practice to take \ac{ai} components into account now starts from the early requirement elicitation stage~\cite{10771003} and spans throughout the entire life cycle processes~\cite{ISOIEC5338}.
+Prompt engineering and prompt programming are currently evolving to produce robust solutions that can keep up with the ever-changing nature of \acp{llm}, also becoming integral components of software applications~\cite{DBLP:journals/corr/abs-2503-02400,DBLP:journals/pacmse/LiangLRM25}, also known as \emph{promptware}.
+Data management is strongly influencing the development as well, leading to architectures specifically designed for properly integrating \acp{llm} and data within the software system~\cite{DBLP:conf/cain/BarnettKTB024,DBLP:conf/icse/Shao0S00025}.
+{\color{blue} Recent work has explored IDE-inspired tooling for prompt programming, including semantic highlighting, structured editing, and automated detection of prompt structure~\cite{10.1145/3544549.3585737}.
+In contrast to such tool-centric approaches, our work focuses on providing language-level abstractions that make interaction structure explicit and analyzable.}
+
+Beyond engineering practices, there are also emerging efforts to rethink programming models for {\color{blue}  \ac{genai}ware} at a more fundamental level. One example is Oracular Programming~\cite{oracular-programming-2025}, which proposes a paradigm where \acp{llm} act as runtime oracles that resolve high-level nondeterministic strategies. This approach emphasizes modularity, evolvability, and extensibility, treating calls to \acp{llm} as structured programming constructs rather than ad-hoc prompts. While our proposal of \ac{lsl} focuses on scripting, constraining, and verifying interactions to provide stronger guarantees, Oracular Programming highlights a complementary research direction in which language abstractions are designed to embrace nondeterminism while still supporting systematic reasoning about {\color{blue}  \ac{genai}ware} systems.
+
+\subsection{Existing Frameworks}
+\label{sec:existingframeworks}
+
+\begin{comment}
+Novelty: Overall, the idea of formalizing LLM interaction via a scripting language is novel, especially considering the integration of output constraints, composable logic, and structured context management in a unified DSL. However, my main concern is that the paper does not convincingly differentiate LSL from existing frameworks such as LangChain, Guidance, NeMo Guardrails, AutoGen, and Semantic Kernel. Existing frameworks such as LangChain and Semantic Kernel already support multi-step LLM pipelines, context control, and function/tool integration. If LSL’s goal is more expressive composition, what does it enable that these do not? For instance, is the novelty in verification, modularity, or formal output constraints? Guidance offers precise control over generation, where LSL’s proposed features look quite similar, so it's better to clarify whether LSL is intended to be more declarative, more general-purpose, or easier to verify.
+\end{comment}
+
+% Stress out that LSL is thought to be more general and easier to V&V
+% Basically it should allow to reintroduce SE prarctices when developing AI-powered software
+
+With our work, we are interested in covering and unifying several aspects related to the adoption of \acp{llm} and \ac{llm}-powered components within software systems.
+There are several key aspects we are interested in.
+First, we want to look into application development, looking into prompt management, function calling, agentic AI, and data management.
+Second, we want to improve reliability and robustness through standard interfaces, automatic input templating and formatting, and output constraints specification. Third, we want to create trustworthiness through verification and validation, and through explainability.
+
+Looking at the state of the art in terms of tools and frameworks addressing these issues, we could not help but notice a strong fragmentation and a lack of standardisation that are preventing the automation of many aspects of \ac{ai}-powered software life cycle.
+
+About application development frameworks and tools to offer the different functionalities, \emph{LangChain} and \emph{LangGraph}~\cite{docs/introduction/} are the earliest and most famous examples.
+Yet, through the last years alternatives like \emph{Semantic Kernel}~\cite{https://github.com/microsoft/semantic-kernel}, \emph{AutoGen} ~\cite{DBLP:journals/corr/abs-2308-08155}, \emph{Flowise} ~\cite{https://github.com/FlowiseAI/Flowise}.
+Some of these frameworks, like \emph{CrewAI}~\cite{https://github.com/crewAIInc/crewA}, are specifically designed for agentic or multi-agent application development.
+The most recent contribution in this sense is the \ac{nlo} tool~\cite{DBLP:conf/sigsoft/ShiAACGKNPRRRST25}, which brings the development closer to literate programming.
+Unlike inference engines, many solutions for context management attempt to provide a unified interface to all models; however, they often lack the ability to constrain the generated output.
+
+On the data side of context management, in recent years, frameworks like \emph{Llama Index}~\cite{https://github.com/run-llama/llama_index} have helped automate most of the work involved in building a vector document store.
+These frameworks allow to enhance data-intensive applications requiring \ac{rag} to offer their functionalities.
+In this sense, \emph{Haystack}~\cite{https://github.com/deepset-ai/haystack} represents a valuable tool that provides resources for both data management and models orchestration.
+
+With a specific focus on reliability and robustness, we mostly depend on inference engines or frameworks.
+Solutions like \emph{Llama CPP} and \emph{Llama CPP Python}~\cite{llama.cpp,llama.cpp.python} offers many low-level functionalities for templating the input and capturing elements of the output.
+Unlike other existing inference engines and tools, Llama CPP allows specifying a \emph{generative grammar} to constrain the generated completions.
+{\color{blue} We talk in these cases of \emph{grammar constrained decoding}~\cite{DBLP:conf/emnlp/GengJP023}.}
+The closest tool in this sense is \emph{Guidance}~\cite{guidance-ai/guidance} that offers a templating system well blended into Python syntax and the possibility to specify capture groups to be automatically applied to the output and to specify a finite list of alternative completions to select from.
+However, most of these tools rely only on HuggingFace's Transformers API or use their own custom interfaces.
+{\color{blue} Prior work shows that \ac{llm}-generated artifacts frequently contain structural defects, including malformed code, incomplete outputs, and inconsistencies across steps, even when they are functionally plausible~\cite{DBLP:conf/icsm/AbbassiSNK25}.}
+
+There are some tools specialised in output constraints and validation.
+\emph{NeMo Guardrails}~\cite{DBLP:conf/emnlp/RebedeaDSPC23} was designed to impose programmable guardrails to make sure a dialogue with an assistant follows a specific template or that certain harmful topics are avoided.
+Many of these tools are thought to impose safety guardrails~\cite{DBLP:journals/corr/abs-2312-06674}, and in fact, there are specialised solutions to capture or prevent toxic and harmful content generation, like \emph{Guardrails AI} ~\cite{https://www.guardrailsai.com/}.
+
+Concerning trustworthiness, we have two main aspects being touched: verification and validation on one side, and explainability on the other.
+About verification and validation, we have that now testing tools and frameworks like \emph{LangTest}~\cite{DBLP:journals/simpa/NazirCCKSMKT24} or \emph{EvoTox}~\cite{DBLP:journals/tse/CorboBDLSC25} which are designed to take into account the black-box and probabilistic nature of \ac{llm} offering a robust evaluation of both model performance or model compliance to certain behaviours.
+However, to the best of our knowledge, no testing suite exploits the information coming out of the tests to quantify and help improve the trustworthiness of the overall software system.
+Adopting \ac{ai}-based components and their integration in the development environment is still at an early stage when available.
+
+Similarly, while we have access to tools and techniques like \emph{InTraVisTo}~\cite{DBLP:journals/corr/abs-2507-13858}, \emph{Tuned Lens}~\cite{DBLP:journals/corr/abs-2303-08112}, or \emph{LM Transparency Tool}~\cite{DBLP:journals/corr/abs-2404-07004}, which are designed specifically for the explainability of \acp{llm}, we hardly see these tools integrated in any development platform.
+However, these tools can turn out to be very helpful for ``debugging a prompt'' a prompt for example, showing how the instructions give to the model affect the predicted output.
+
+{\color{blue}
+
+\subsection{Known Challenges}
+\label{sec:known-challenges}
+
+Recent empirical and conceptual studies highlight fundamental challenges in engineering \ac{genai}ware. 
+Although these works address different aspects, such as testing methodologies, developer experience, and output artifacts quality, they collectively reveal consistent patterns that point to deeper structural issues in how \ac{llm} interactions are currently designed and implemented.
+A key difficulty is that prompts lack a predefined grammar, making it hard to reason about their structure and to support standard programming operations such as refactoring or reuse~\cite{10.1145/3544549.3585737}.
+Recent studies highlight that testing and debugging LLM-based systems are fundamentally challenging due to non-determinism and implicit interaction logic, requiring new abstractions beyond traditional software engineering approaches~\cite{10.1145/3806396,DBLP:conf/icse-seip/NaharKBPZB25}.
+
+Unlike traditional software components, \ac{llm}-based components exhibit inherent non-determinism, producing different outputs even under identical inputs and configurations. 
+As a result, correctness can no longer be assessed as a binary property, but rather as a distribution of outcomes across repeated executions. 
+This aspect challenges established assumptions in \ac{se}, particularly in testing, verification, and reproducibility~\cite{10.1145/3806396}.
+
+In \ac{genai}ware, behavior is not solely defined by code but emerges from the interaction between prompts, model inference, and surrounding control logic. 
+Prompt construction acts as both input specification and behavioral modifier, effectively encoding parts of the system logic in natural language. 
+However, this interaction logic is typically embedded in general-purpose code, where it remains implicit and difficult to analyze or reason about~\cite{10.1145/3806396}.
+
+Empirical studies show that developers face persistent and diverse challenges when developing \ac{genai}ware, including prompt design, integration, reproducibility, and output interpretation. 
+Many of these issues are difficult to resolve in practice, with a low proportion of questions receiving accepted solutions and long response times in developer communities~\cite{DBLP:journals/tosem/ChenGCZL25}. 
+These findings indicate that current development practices lack adequate abstractions and methodologies to support reliable engineering of \ac{llm}-based systems.
+Beyond correctness, if we focus on \ac{llm}-generated artifacts, they often exhibit structural quality issues, including incorrect or partial logic, unnecessary complexity, and poor maintainability, even when they satisfy functional requirements. 
+These inefficiencies are diverse and frequently interconnected, complicating integration into larger software systems \cite{DBLP:conf/icsm/AbbassiSNK25}.
+
+Taken together, these findings point to a fundamental gap: the primary source of complexity in \ac{genai}ware lies not only in the models themselves, but also in the interaction logic that governs their use. 
+This logic, expressed through prompt design, context management, and multi-step interactions, is typically implicit, scattered across code, and difficult to analyze, test, and maintain.
+From these observations, we derive the following requirements for engineering \ac{genai}ware:
+\begin{enumerate}[label=R\arabic*]
+    \item \emph{Explicit interaction structure}: interaction logic should be explicitly represented rather than embedded implicitly in host language code.
+    \item \emph{Separation of concerns}: deterministic control flow and probabilistic model behavior should be clearly separated.
+    \item \emph{Analyzability and verifiability}: interaction structures should be amenable to validation, verification, and systematic debugging.
+    \item \emph{Support for variability}: the programming model should explicitly account for non-deterministic outputs and variability across executions.
+\end{enumerate}
+
+\subsection{Positioning of this Work}
+\label{sec:positioningofthiswork}
+
+A natural question is why a new domain-specific language is needed at all, given the existence of powerful general-purpose languages such as Python and a rich ecosystem of libraries for \ac{llm} orchestration, validation, and guardrails.
+Indeed, many of the individual techniques discussed in this paper, like as prompt templating, structured outputs, or output validation, can be implemented already using existing frameworks.
+Across multiple empirical studies, developers consistently report difficulties in prompt design, integration, and failure diagnosis, indicating that current approaches do not scale to complex workflows~\cite{10.1145/3544549.3585737}.
+
+Our position is that the core limitation of current approaches is not expressiveness, but analyzability through an appropriate abstraction level. 
+Existing approaches to building \ac{genai}ware largely rely on general-purpose programming languages and framework-based abstractions to orchestrate model interactions. 
+While these approaches provide flexibility and prototyping capabilities, they typically treat prompt construction and interaction logic as ad hoc elements embedded in application code. 
+As a result, they do not make interaction structure explicit, nor do they provide mechanisms for analyzing or verifying the behavior arising from such interactions.
+
+Recent research has highlighted the need for new \ac{se} approaches that account for the non-deterministic and interaction-driven nature of LLM-based systems. 
+In particular, challenges related to variability, testing, and developer experience suggest that prompt programming cannot be viewed merely as string manipulation, but requires principled abstractions to manage complexity.
+
+In this context, we position \ac{lsl} as a \ac{dsl} designed to address the structural limitations of current practices by introducing first-class abstractions for modeling \ac{llm} interactions. 
+Raher than embedding prompts and interaction logic implicitly within general-purpose code, \ac{lsl} represents interactions as explicit, structured programs.
+
+Specifically, \ac{lsl} addresses the requirements identified in \Cref{sec:known-challenges} with the following features:
+\begin{enumerate}[label=F\arabic*]
+    \item \ac{lsl} provides explicit constructs for defining interaction blocks and workflows, making prompt-based logic visible and structured.
+    \item \ac{lsl} separates deterministic control logic from probabilistic model execution, enabling clearer reasoning about system behavior.
+    \item By enforcing structural constraints and well-defined interaction boundaries, \ac{lsl} enables static analysis and systematic validation of interaction logic.
+    \item \ac{lsl} exposes interaction boundaries and constraints that make variability explicit and manageable within the programming model.
+\end{enumerate}
+
+\ac{lsl} plays a role analogous to SQL for databases or regular expressions for pattern matching: it does not supersede host languages, but provides a specialized abstraction that enables reasoning, optimization, and verification that would be impractical in unrestricted code.
+Overall, \ac{lsl} shifts prompt programming from an implicit and ad hoc practice to an explicit, structured, and analyzable software engineering activity, providing a principled foundation for developing and maintaining \ac{genai}ware.
+
+}
+
+
+\section{LLM Scripting Language}
+\label{sec:llmscriptinglanguage}
+
+In this section, we detail our proposed \ac{dsl}, \ac{lsl}, as a way to control \acp{llm} within pipelines and workflows (\Cref{sec:framework}), we explain how we envision the approach to constrain and exploit \acp{llm} generative capabilities (\Cref{sec:beyondprompting}) and the interaction structure (\Cref{sec:beyondlinearinteractions}) in this framework.
+{\color{blue}Moreover, we provide overview of the \ac{lsl} core language model (\Cref{sec:corelanguagemodel})}
+Finally, we comment on the expected user base of our \ac{dsl} (\Cref{sec:stakeholders}).
+
+\subsection{Proposed Framework}
+\label{sec:framework}
+
+% DSL for dialogue structure
+
+% Mixture of templates and grammars/regex
+
+% Recursively define subdialogues (functions? Similar to LLM agents?)
+% Define capture groups to extract info with high precision
+% Define variables to move information between different steps
+
+% DSL is agnostic to LLM, but template may not be.
+
+% Calls to API should be generated automatically, basically define script of dialogue
+
+% \begin{wrapfigure}{l}{0.5\textwidth}
+\begin{figure}[!ht]
+\begin{center}
+    % \includegraphics[width=.931\columnwidth]{figures/idea.pdf}
+    \includegraphics[width=.69825\columnwidth]{figures/idea.pdf}
+\caption{Idea behind \ac{lsl}: the domain expert uses the \ac{dsl} to write scripts for different tasks, end users accessing their \ac{ai}-powered applications or servers running their \ac{ai}-powered applications interact with the \ac{llm} selecting the script corresponding to the required functionality.}
+% \caption{Intended use of \ac{lsl} by domain experts to script interactions with \acp{llm} for \ac{ai}-powered applications.}
+\label{fig:idea}
+\end{center}
+\end{figure}
+% \end{wrapfigure}
+
+We propose \ac{lsl}: a \ac{dsl} to format and constrain the input and output of an \ac{llm}.
+The idea is to develop a scripting language, its interpreter and the surrounding development tools to improve the guarantees on many aspects concerning the use of \acp{llm} and make them more autonomous.
+The interpreter running the script should interact with the \ac{llm} either communicating with it locally or remotely in a seamless way to the user.
+
+{\color{blue}
+
+Drawing from \ac{hci} theory, \ac{lsl} can be understood as a \emph{cognitive scaffold} that restructures how users (\ac{se} practitioners) formulate, execute, and reason about interactions with language models. 
+Rather than relying on ad hoc prompt engineering, the \ac{lsl} provides explicit abstractions for control flow, data dependencies, and intermediate reasoning steps, thereby externalizing mental processes that would otherwise remain implicit. 
+In line with theories of \emph{external cognition} (i.e., cognitive offloading)~\cite{10.5555/200550} and distributed cognition~\cite{DBLP:journals/tochi/HollanHK00,Obendorf2009}, the language acts as a representational medium that reduces cognitive load, improves transparency, and supports more systematic debugging and reuse. 
+
+Prior work shows that existing prompt engineering tools provide little support for forming accurate mental models of \ac{llm} behavior, forcing users to rely on trial-and-error and intuition), further motivating structured abstractions such as \ac{lsl} as cognitive scaffolding~\cite{10.1145/3544549.3585737}.
+By constraining interaction patterns and making reasoning structure visible, \ac{lsl} helps bridge the semantic gap between user intent and \ac{llm} behavior, enabling more reliable and cognitively tractable human–\ac{ai} collaboration.
+
+}
+
+The intended uses of the scripting language are
+\begin{enumerate*}[label=(\roman*)]
+    \item defining interaction blocks,
+    \item managing the context processed by the \ac{llm},
+    \item formatting input prompt to the \ac{llm};
+    \item constraining output completion of the \ac{llm}.
+\end{enumerate*}
+As we show in \Cref{fig:idea}, we are designing this \ac{dsl} to be used by experts who need to integrate \ac{ai} in their applications or services.
+The experts use \ac{lsl} to write scripts to automate some pipeline, part of an application, using \acp{llm}.
+The end user, or other services, can benefit from these \ac{ai}-based applications using these pipelines.
+Given that \acp{llm} can generate any output sequence, as their vocabulary covers everything that can be written with \emph{Unicode}, the scripts and the applications can be agnostic of the underlying \ac{llm} and frameworks.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=.7\columnwidth]{figures/ssuc.pdf}
+    \caption{Example semi-structured use case (system messages, instructions, data, and subroutine outputs): knowledge-grounded chat.}
+    \label{fig:ssuc}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=.7\columnwidth]{figures/suc.pdf}
+    \caption{Example structured use case (system messages, instructions, data and subroutine outputs): database creation}
+    \label{fig:suc}
+\end{figure}
+\begin{comment}
+
+\begin{figure}[!h]
+\begin{center}
+    % \subfloat[Semi-structured use case: knowledge grounded chat.\label{fig:ssuc}]{\includegraphics[width=\columnwidth]{figures/ssuc.pdf}} \hfill
+    \subfloat[Semi-structured use case: knowledge grounded chat.\label{fig:ssuc}]{\includegraphics[width=.6\columnwidth]{figures/ssuc.pdf}} \\
+    % \subfloat[Structured use case: database creation\label{fig:suc}]{\includegraphics[width=\columnwidth]{figures/suc.pdf}}
+    \subfloat[Structured use case: database creation\label{fig:suc}]{\includegraphics[width=.6\columnwidth]{figures/suc.pdf}}
+% \caption{Example use cases. System messages and instructions are hidden to the user as well as subroutine outputs. Every time a subroutine starts a new isolated context may be created to solve the subtask. The model can be instructed to give a specific output or to generated free text, either case the output can be extracted and re-used in following pipelines step.}
+\caption{Example use cases (system messages, instructions, data and subroutine outputs).}
+\label{fig:uc}
+\end{center}
+\end{figure}
+\end{comment}
+
+\ac{lsl} is thought to be used in any kind of interaction, from unstructured chit-chats to more complex structured or semi-structured use cases, like knowledge-grounded conversations, and automating the creation of databases, as we show in the examples of \Cref{fig:ssuc,fig:suc}.
+Considering the semi-structured use case of the knowledge-grounded chat, as represented in \Cref{fig:ssuc}, we can see how \ac{lsl} can be used to provide a global structure for the dialogue, alternating user messages and model responses.
+Before triggering the \ac{llm} completion to get the response, we can issue a call to a sub-routine that takes care of gathering relevant documents.
+This sub-routine, in turn, issues two consecutive calls to as many sub-routines for query identification and extraction.
+Lastly, the approach uses the \ac{llm} to further filter retrieved documents, all in a separate context.
+Conversely, structured use cases find a lot of compatible applications in process automation, like in the example of database creation from informal specifications of \Cref{fig:suc}.
+In this second use case, we can see how \ac{lsl} can be used to issue three consecutive calls to as many sub-routines to identify entities, attributes, and relationships, all in separate contexts.
+From the extracted information, \ac{lsl} can inject another piece of the prompt similar to \ac{cot} to ease the generation of the SQL code with the definitions of the tables; moreover, with \ac{lsl}, we can constrain the last completion to stick to the SQL syntax to enforce well-formed code.
+
+When we mention \enquote{constraining the output of the \ac{llm}}, we mean limiting the output to a subset of possible strings, whether they are enumerated or specified with some formalism, as we detail in \Cref{sec:beyondprompting}.
+Instead, when we mention \enquote{controlling the interaction with the \ac{llm}} we mean properly adding or removing pieces of the context whenever prompting the \ac{llm}, as we further outline in \Cref{sec:beyondlinearinteractions}.
+In \Cref{fig:ssuc,fig:suc}, we show how we plan to constrain the output:
+We enforce the generated answer to some questions to be \enquote{yes} or \enquote{no}, as shown in both \Cref{fig:ssuc} and \Cref{fig:suc}, or to stick to some specific syntax, as displayed in \Cref{fig:suc}.
+Similarly, we show how we plan to control the scope of the interaction to a single question and its answer rather than retaining all user input when selecting documents, like in \Cref{fig:ssuc}, or when extracting entities and their relationships, like in \Cref{fig:suc}.
+
+\begin{table}[!ht]
+\caption{{\color{blue}Key differences between exisiting Python-based frameworks and the proposed \ac{lsl}}}
+\begin{center}
+% \resizebox{\columnwidth}{!}{
+\begin{tabular}{lll}
+\toprule
+
+\textbf{Aspect} & \textbf{Python-based framework} & \textbf{\ac{lsl}} \\
+
+\midrule
+
+Interaction logic & Embedded in host language & First-class scripted artifact \\
+Output constraints & Runtime validation & Part of execution semantics \\
+Static analysis & Limited & Possible (termination, reachability) \\
+Verification & External, ad hoc & Integrated into the language model \\
+Intended user & Application developer & SE practitioner defining contracts \\
+Primary goal & Productivity & Reliability and analyzability \\
+
+\bottomrule
+
+\end{tabular}
+% }
+\end{center}
+\label{tab:distinction}
+\end{table}%
+
+{\color{blue}
+
+\ac{lsl} is therefore not proposed as a competitor to existing orchestration frameworks, but as a complementary abstraction that enables principled engineering analysis of \ac{llm} interactions.
+We summarize the core distinctions of \ac{lsl} from exisiting Python-based frameworks in \Cref{tab:distinction}.
+}
+
+\subsection{Beyond Prompting}
+\label{sec:beyondprompting}
+
+% Prompting via natural language instructions is good, but can be better, FS, Agents and CoT help improve but still no guarantee.
+% Use grammars and other approaches to constrain output
+% Existing resources
+% https://github.com/ggerganov/llama.cpp/blob/master/grammars/README.md
+% https://openai.com/index/introducing-structured-outputs-in-the-api/
+% https://arxiv.org/html/2407.02742v1
+
+Engineering the prompt to trigger the correct model completion is a non-trivial task~\cite{DBLP:conf/iclr/SanhWRBSACSRDBX22,DBLP:journals/jmlr/ChungHLZTFL00BW24}.
+Besides phrasing the request to the \ac{llm} correctly in natural language, there are other difficulties.
+One difficulty is making sure to provide all necessary information (e.g., task description, target labels, output format).
+Another crucial difficulty concerns using correct techniques like few-shot learning to increase the probability of triggering the desired model's behaviour, whether it is solving the correct task or sticking to the correct output format.
+Nevertheless, all these techniques cannot give any formal guarantee on the structure of the generated output.
+
+Generative grammars can be the solution to tackle this issue.
+In fact, they offer a formalism that can be exploited to constrain the decoding of the \ac{llm} output probabilities to well-formed strings according to a given specification.
+These grammars can be applied freely to the generation process of an \ac{llm}.
+There are simple use cases, like generating only digit tokens if computing the value of a mathematical expression.
+Other use cases are more complex, like the example of generating syntactically correct SQL code for a query to be run in \Cref{fig:suc} or generating JSON strings that respond to a given JSON schema. % to automate calls to an external API.
+As we discuss later in \Cref{sec:opportunities,sec:challenges}, this constrained decoding still does not ensure the soundness of the output, but at least gives guarantees on the fidelity to the desired structures.
+
+With these grammars, we can specify the set of all acceptable and desirable completions for the current prompt.
+The proper way to select the completion would be to pick the one that maximises the joint probability of its tokens according to the \ac{llm}.
+However, this may not be feasible either because the set of valid strings for the grammar is infinite or because it is still too large to be processed in a reasonable time.
+In these cases, resorting to search strategies like \emph{greedy search} or \emph{beam search} may help reduce the computational burden at the cost of introducing sub-optimal, but still syntactically valid, solutions.
+
+The use of these grammars does not exclude the combined use with typical prompt engineering techniques that are still useful to make sure the probabilities in the output correlate with the task to solve.
+Additionally, \ac{lsl} and its interpreter can be designed to help {\color{blue} in prompt programming}%the prompt engineering phase
+, offering tools for templating the context in a way that is more suitable to the \ac{llm} or by automating some passages like the retrieval of relevant information of examples for the few-shot learning from known and reliable sources.
+
+\subsection{Beyond Linear Interactions}
+\label{sec:beyondlinearinteractions}
+
+% Mix structured and unstrctured passages
+% non-linear (recursive, nested) conversations/interactions
+% Possibilities for libraries and subroutines
+% Cyclic graphs to support self debugging?
+
+Most applications that integrate chatbots based on \acp{llm} see the interaction with the user as a linear process where the user and chatbot alternate sending messages to each other.
+However, the stateless nature of \acp{llm} makes them compatible with non-linear interaction, whether they are chats or other more structured processes~\cite{fornasiere-etal-2024-medical,DBLP:conf/avi/PucciPAM24}.
+This means that we can integrate an \ac{llm} in a workflow characterised by
+\begin{enumerate*}[label=(\roman*)]
+    \item multiple, possibly independent, steps to solve the main task or its sub-tasks,
+    \item isolated steps that do not require processing the entire context,
+    \item states that needs to be passed from one step to another and
+    \item forward and backward evolutions of the interaction.
+\end{enumerate*}
+
+\Cref{fig:suc} shows how both a semi-structured task, such as the knowledge-grounded chat of the example in \Cref{fig:ssuc}, and a structured task like the generation of SQL code to build a database of the example in \Cref{fig:suc} require multiple steps.
+% Moreover, we can see how some passages are iterative, some steps are self-contained and many of them require to define and move around some variables: these all characteristics that lay the basis for the development of a \ac{dsl}.
+Moreover, some passages are iterative, some steps are self-contained, and many of them require defining and moving around variables: these are all premises for the development of a \ac{dsl}.
+Nowadays there are tools and frameworks like \emph{Langchain}~\cite{docs/introduction/} to help define pipelines and automate processes or like \emph{NeMo Guardrails} to impose some constraints on the dialogue flow and content~\cite{DBLP:conf/emnlp/RebedeaDSPC23}, but
+\begin{enumerate*}[label=(\roman*)]
+    \item they often lack expressivity to deal with complex problems,
+    \item they do not take into account possible optimisations to enhance performances,
+    \item they are bound to one or a small set of domains (e.g., programming languages),
+    \item they do not necessarily allow for rapid prototyping and deployment, and
+    \item they do not exploit formal tools to provide some form of verification or validation.
+\end{enumerate*}
+% With \ac{lsl} we aim at easing the implementation of all these steps using a unified programming interface.
+With \ac{lsl}, we aim at easing the implementation of all these steps through a unified interface.
+
+
+Moreover, some passages, like the relevant document selection in the search function of the example in \Cref{fig:ssuc}, or the attributes and relations extractions of the example in \Cref{fig:suc}, are independent and can be parallelised.
+A proper integration of this feature in \ac{lsl} can allow automatic exploitation of the high degree of parallelism that \acp{dnn} naturally enable.
+In fact, they can process samples in batches independently of each other, allowing, where applicable, a better utilisation of the computational resources.
+
+% Going even further with non linear-structures of interactions, we also consider error management.
+Going further with non-linear interactions, we also consider error management.
+% If fact, despite the use of \ac{lsl} there still may be faults caused either by the underlying \ac{llm} or the surrounding environment.
+In fact, despite the use of \ac{lsl} there still may be faults caused either by the underlying \ac{llm} or by the environment.
+For these cases, we foresee the integration of tools to trace the source of the errors and apply correction actions, either by asking for user feedback, when applicable, or by prompting the \ac{llm} to provide a revised completion~\cite{DBLP:conf/nips/ShinnCGNY23}, given the previous faulty completion and the error.
+
+{\color{blue}
+
+\subsection{Core Language Model}
+\label{sec:corelanguagemodel}
+
+% In this section we itroduce the design principles of \ac{lsl} (\Cref{sec:lsl-design-principles}), the core language constructs (\Cref{sec:lsl-core-constructs}), the execution model (\Cref{sec:lsl-execution-model}), the interaction semantics (\Cref{sec:lsl-interaction-semantics}), and discuss about guarantees and limitations (\Cref{sec:lsl-guarantees-and-limitations}). 
+
+% \subsubsection{Design Principles}
+% \label{sec:lsl-design-principles}
+
+\ac{lsl} is designed for \emph{prompt programming in \ac{genai}ware systems}, where the primary abstraction is not computation over data, but structured interaction with a probabilistic model. 
+In such systems, prompts, context, and output constraints jointly determine the behaviour of the underlying foundation model and must therefore be treated as first-class software artifacts~\cite{llm_se_roadmap}.
+
+The design of \ac{lsl} is guided by three core principles: 
+\begin{enumerate*}[label=(\roman*)]
+  \item \emph{interaction-centricity}, 
+  \item \emph{explicit context and constraints}, and
+  \item \emph{analyzability over expressiveness}.
+\end{enumerate*}
+\ac{lsl} programs describe \emph{interaction workflows} rather than purely algorithmic computations. 
+Each program consists of a sequence of interactions between deterministic software components and a \ac{llm}, where each interaction is explicitly defined and scoped.
+Moreover, \ac{lsl} treats context construction, scoping, and evolution as explicit language constructs, and similarly elevates output constraints to first-class elements. This reflects the central role of context engineering and output constraining in \ac{genai}ware development~\cite{llm_se_roadmap}.
+Finally, consistent with \ac{dsl} design principles, \acl{lsl} prioritizes analyzability over unrestricted expressiveness, enabling inspection and reasoning about prompt-driven behaviour as software artifacts~\cite{DBLP:conf/sofsem/Mernik17}.
+
+% \subsubsection{Core Constructs}
+% \label{sec:lsl-core-constructs}
+
+% The proposed core model defines a minimal set of constructs sufficient to represent structured prompt-based interactions.
+
+% \paragraph{Interaction Blocks.}
+The fundamental unit of computation is the \emph{interaction block}, representing a single prompt--response exchange:
+
+\begin{lstlisting}[
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    breakatwhitespace=true
+]
+interaction classify_sentiment:
+    args: 
+      - text
+    preamble: "Classify the sentiment of the given text."
+    input: "'''\n{text}\n'''"
+    output: enum {positive, negative, neutral}
+\end{lstlisting}
+
+This interaction encapsulates the context, instruction, and output constraint as a single analyzable unit.
+
+% \paragraph{Context Scopes.}
+Context scopes define which information is visible to the model:
+
+\begin{lstlisting}[
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    breakatwhitespace=true
+]
+context review_context:
+    include user_review
+    exclude previous_responses
+\end{lstlisting}
+
+This prevents unintended accumulation of context and enables reasoning about information dependencies.
+
+% \paragraph{Output Constraints.}
+Outputs are constrained using formal specifications, such as enumerations, schemas, or grammars.
+
+\begin{lstlisting}[
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    breakatwhitespace=true
+]
+interaction extract_entities:
+    args: 
+        - document
+    preamble: "Extract entities from the given document"
+    input: "'''\n{text}\n'''"
+    output: schema JSON[List[String]]
+\end{lstlisting}
+
+More expressive constraints can be defined using grammars:
+
+\begin{lstlisting}[
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    breakatwhitespace=true
+]
+output: grammar SQL_Statement
+\end{lstlisting}
+
+% \paragraph{Control Flow.}
+\ac{lsl} provides constructs for sequencing, branching, and iteration.
+
+\begin{lstlisting}[
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    breakatwhitespace=true
+]
+if detect_query(message):
+    docs = search(message)
+    response = answer_with_docs(message, docs)
+else:
+    response = generic_response(message)
+\end{lstlisting}
+
+% \paragraph{Observation and Recovery Hooks.}
+Execution can be monitored and adapted dynamically.
+
+\begin{lstlisting}[
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    breakatwhitespace=true
+]
+interaction generate_code:
+    ...
+    output: grammar Python_Function
+
+on error:
+    retry(max=2)
+    fallback(default_code)
+\end{lstlisting}
+
+% \subsubsection{Execution Model}
+% \label{sec:lsl-execution-model}
+
+In our intended execution model, an \ac{lsl} program is interpreted as a sequence of steps alternating between deterministic computation and probabilistic model invocation. 
+Each interaction block is evaluated through the following stages:
+
+\begin{enumerate}
+    \item \emph{Context construction}, assembling relevant inputs and state;
+    \item \emph{Prompt instantiation}, materializing the instruction template;
+    \item \emph{Constrained generation}, invoking the LLM under output constraints;
+    \item \emph{Validation and binding}, checking conformance and storing results.
+\end{enumerate}
+
+This execution model introduces a clear separation between conventional control flow and probabilistic behaviour, which is essential for enabling analysis and reasoning~\cite{llm_se_roadmap}.
+
+% \paragraph{Example.}
+Consider a two-step workflow:
+
+\begin{lstlisting}[
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    breakatwhitespace=true
+]
+sentiment = classify_sentiment(review)
+if sentiment == "negative":
+    summary = summarize_issue(review)
+\end{lstlisting}
+
+This corresponds to two interaction blocks evaluated sequentially, with explicit data flow between them.
+
+% \subsubsection{Interaction Semantics}
+% \label{sec:lsl-interaction-semantics}
+
+\ac{lsl} semantics are defined in terms of structured interactions with explicit control over both context and output space.
+
+% \paragraph{Context Semantics.}
+Context is explicitly constructed and scoped for each interaction.
+
+\begin{lstlisting}[
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    breakatwhitespace=true
+]
+interaction filter_docs:
+    args: 
+        - query
+    context:
+        include retrieved_docs
+        exclude user_history
+\end{lstlisting}
+
+This avoids interference between unrelated steps and ensures predictable behaviour.
+
+% \paragraph{Output Semantics.}
+Output validity is defined by conformance to constraints. 
+\ac{lsl} enforces \emph{structural correctness} by restricting the set of admissible outputs.
+
+\begin{lstlisting}[
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    breakatwhitespace=true
+]
+interaction detect_query:
+    args: 
+        - message
+    preamble: ...
+    input: ...
+    output: enum {yes, no}
+\end{lstlisting}
+
+The model is constrained to produce one of the allowed values, ensuring compatibility with downstream control flow.
+
+% subsubsection{Guarantees and Limitations}\label{sec:lsl-guarantees-and-limitations}
+
+% \paragraph{Guaranteed Properties.}
+Our objective with \ac{lsl} is to enable reasoning about:
+\begin{enumerate*}[label=(\roman*)]
+    \item control-flow properties (e.g., reachability, termination),
+    \item structural validity of outputs,
+    \item consistency of interaction contracts,
+    \item presence of recovery strategies.
+\end{enumerate*}
+
+For example, given a grammar-constrained output:
+
+\begin{lstlisting}[
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    breakatwhitespace=true
+]
+output: grammar JSON_API_Call
+\end{lstlisting}
+
+one can ensure that all generated API calls conform to the expected syntax.
+
+However, \ac{lsl} does not guarantee:
+\begin{enumerate*}[label=(\roman*)]
+    \item factual correctness,
+    \item absence of hallucinations,
+    \item semantic validity of outputs.
+\end{enumerate*}
+
+These limitations arise from the probabilistic nature of LLMs, whose outputs are generated based on learned distributions rather than deterministic computation.
+
+}
+
+\subsection{Stakeholders}
+\label{sec:stakeholders}
+
+% Intended use base
+\ac{lsl} is designed primarily for software engineers who need to integrate \ac{llm}-powered functionality into applications and services, but who may lack deep expertise in machine learning or natural language processing.
+These practitioners understand their application domains and requirements well, but face barriers when attempting to prompt \acp{llm} effectively: they must navigate complex machine learning or deep learning frameworks, manage probabilistic outputs, and ensure reliability in production systems.
+By providing a scripting interface that abstracts away low-level \ac{llm} implementation details while still offering fine-grained control over interactions, \ac{lsl} gives these professionals the opportunity to focus on solving domain-specific problems rather than
+\begin{enumerate*}[label=(\roman*)]
+    \item dealing with the machine learning infrastructure, and
+    \item managing the several tools necessary to build the intended component.
+\end{enumerate*}
+Secondary stakeholders include DevOps engineers responsible for deploying and maintaining \ac{ai}-powered services, as well as quality assurance professionals who need to verify and validate \ac{llm}-based components within larger software systems.
+
+% Expected skills
+We assume that \ac{lsl} users possess core \ac{se} competencies rather than specialized \ac{ai} expertise.
+Specifically, users should be proficient in programming under imperative or procedural paradigms (e.g., using languages like C, Bash, or Python) and comfortable with standard programming constructs such as control flow, functions, and error handling.
+They should have practical knowledge of \ac{se} practices, including testing, debugging, and verification techniques, as well as basic familiarity with DevOps workflows like \emph{continuous integration} or \emph{continuous delivery} pipelines.
+While users need not be machine learning researchers, they should understand \acp{llm} at a conceptual level; this includes \acp{llm} capabilities, limitations (e.g., hallucinations, probabilistic outputs), as well as basic prompt engineering techniques such as few-shot learning.
+Experience with \acp{dsl} (e.g., regular expressions, build scripts) and APIs is beneficial, as is the ability to design multi-step workflows and data pipelines.
+Finally, users should be willing to engage with lightweight formalism, such as defining constraints through JSON schemas or grammar-like specifications, without requiring expertise in formal verification methods.
+% This skillset represents the typical profile of practicing software engineers who can readily adopt \ac{lsl} as an extension of their existing development toolkit.
+
+{\color{blue}
+
+\section{Illustrative Example}
+\label{sec:illustrative-example}
+
+\begin{comment}
+... % Failure modes
+
+Starting from the example in \Cref{fig:suc}, we propose two hypothetical implementations:
+\begin{itemize}
+    \item one using Python, LangChain and Pydantic,
+    \item one using LSL.
+\end{itemize}
+
+We measure the failure modes
+\begin{itemize}
+    \item invalid output rate
+    \item pipeline breakage
+    \item recovery effort
+\end{itemize}
+
+\begin{table}[!ht]
+\caption{{\color{blue}Caption}}
+\begin{center}
+% \resizebox{\columnwidth}{!}{
+\begin{tabular}{lll}
+\toprule
+
+\textbf{Scenario} & \textbf{Python-based framework} & \textbf{\ac{lsl}} \\
+
+\midrule
+
+Malformed output & Runtime exception & Impossible \\
+Missing function call & Silent failure & Script-enforced \\
+Debugging scope & Entire program & Interaction block \\
+
+\bottomrule
+
+\end{tabular}
+% }
+\end{center}
+\label{tab:eval}
+\end{table}
+\end{comment}
+
+To illustrate the implications of the proposed \ac{lsl} programming model, we analyse a representative application example: the generation of SQL code from informal user specifications, as introduced in \Cref{fig:suc}. 
+This scenario is representative of \ac{genai}ware systems where \acp{llm} are used to produce structured artifacts that are subsequently consumed by deterministic software components.
+
+The SQL generation pipeline in \Cref{fig:suc} involves multiple steps, including:
+\begin{enumerate*}[label=(\roman*)]
+    \item entity extraction,
+    \item attribute identification,
+    \item relationship extraction, and
+    \item SQL code generation.
+\end{enumerate*}
+Each step relies on \ac{llm} outputs that must conform to expected structures to ensure correct downstream processing.
+
+We consider two alternative implementations of the same workflow.
+The former is a \emph{Python-based implementation}, combining a general-purpose language with existing frameworks (e.g., LangChain for orchestration and Pydantic for output validation).
+The latter is an \emph{\ac{lsl}-based implementation}, where interactions, context management, and output constraints are expressed as first-class constructs in a dedicated prompt-programming language.
+
+Rather than evaluating model accuracy, which depends on the underlying \ac{llm}, we focus on \emph{engineering-relevant failure modes} that affect the reliability and maintainability of \ac{genai}ware systems. 
+In particular, we consider:
+
+\begin{itemize}
+    \item \emph{Invalid output rate}: the frequency with which generated outputs do not conform to the expected structure (e.g., malformed SQL).
+    \item \emph{Pipeline breakage}: the extent to which invalid or unexpected outputs propagate and disrupt downstream steps.
+    \item \emph{Recovery effort}: the effort required to detect, localize, and correct failures during execution.
+\end{itemize}
+
+\paragraph{Analysis}
+
+The SQL generation scenario exposes several concrete failure cases:
+\begin{enumerate*}[label=(\roman*)]
+    \item \emph{Malformed SQL syntax}, e.g., missing parentheses or invalid keywords, causing execution errors in downstream systems;
+    \item \emph{Inconsistent intermediate representations}, e.g., entities extracted without corresponding attributes, leading to incomplete schema definitions;
+    \item \emph{Missing or incorrect relationships}, resulting in logically inconsistent database schemas;
+    \item \emph{Incorrect control decisions}, e.g., failure to detect whether a user query requires structured processing, leading to incorrect pipeline execution.
+\end{enumerate*}
+
+In Python-based implementations, these failures are managed in an ad hoc manner. 
+Moreover, output validation is typically performed post hoc and control-flow decisions depend on possibly invalid or missing outputs. 
+For instance, malformed SQL is typically detected only at execution time, while inconsistencies between entities and attributes may propagate across multiple steps before being detected. 
+Validation logic (e.g., JSON schema checks or type validation) is applied after generation, and control flow decisions depend on outputs that may be missing, malformed, or semantically incorrect. 
+Often these failures are caught by some mechanism that feeds back the error to \ac{llm} in an attempt to fix it, leading to the so called ``Code Roulette''~\cite{prompting-effecting-variability}.
+
+In contrast, \ac{lsl} externalizes these concerns into the interaction model. 
+Intermediate steps such as entity extraction and relationship detection are associated with explicit output constraints (e.g., lists, schemas), while final SQL generation can be constrained using formal grammars. 
+As a result, structural violations can be detected or prevented through constrained decoding at the boundary of each interaction block, reducing the likelihood of error propagation.
+
+Even in the absence of formal syntax, prompts exhibit implicit semantic structure (e.g., preambles, examples, templates), which can be inferred and operationalized~\cite{10.1145/3544549.3585737}.
+\ac{lsl} builds on this intuition by making such structure explicit and enforceable.
+
+\begin{table}[!ht]
+\caption{{\color{blue} Comparison of failure modes in Python-based frameworks and LSL}}
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+
+\textbf{Scenario} & \textbf{Python-based framework} & \textbf{\ac{lsl}} \\
+
+\midrule
+
+Malformed output & Runtime exception or invalid data propagation & \makecell[l]{Structurally prevented\\(or detected at interaction boundary)} \\
+
+Missing function call & Silent failure or incorrect branching & Enforced by interaction specification \\
+
+Error localization & Distributed across program logic & Localized to interaction block \\
+
+Recovery handling & Ad hoc, application-specific & Explicit, integrated in execution model \\
+
+\bottomrule
+
+\end{tabular}
+\end{center}
+\label{tab:eval}
+\end{table}
+
+% \paragraph{Comparative Summary.}
+\Cref{tab:eval} summarizes key differences between the two approaches.
+
+\paragraph{Discussion and Limitations}
+
+This application example shows that \ac{lsl} improves robustness in structured generation scenarios such as SQL synthesis. 
+By constraining outputs and isolating interactions, \ac{lsl} reduces both the likelihood and the impact of structural failures. 
+In particular, grammar-based constraints are effective in ensuring syntactically valid SQL, while explicit interaction boundaries prevent the propagation of invalid intermediate representations. 
+Moreover, \ac{lsl} improves interpretability by making interaction logic explicit.
+
+However, improvements introduced by \ac{lsl} come with trade-offs 
+In fact, the improvements we reported in this example scenario are limited to \emph{structural correctness}. 
+\ac{lsl} does not guarantee that the generated SQL is semantically correct with respect to the user's intent, nor that the extracted entities and relationships reflect the true meaning of the input specification.
+Moreover, introducing a \ac{dsl} requires developers to learn new abstractions and integrate an additional execution layer.
+Additionally, \ac{lsl} addresses structural and interaction-level failures but does not eliminate model-level issues such as hallucinations or ambiguity in natural language instructions.
+
+Overall, the application example suggests that \ac{lsl} shifts failure modes from \emph{implicit and distributed} (in Python-based implementations) to \emph{explicit and localized} (in prompt programs), thereby improving analyzability and maintainability without altering the underlying probabilistic nature of \acp{llm}.
+
+}
+
+\section{Opportunities}
+\label{sec:opportunities}
+
+In this section, we report our considerations about the opportunities given by \ac{lsl} for reliability (\Cref{sec:reliability}), robustness (\Cref{sec:robustness}), and trustworthiness (\Cref{sec:trustworthiness}).
+%At the end of each sub-section we provide a summary card about the mentioned opportunity.
+
+\subsection{Reliability}
+\label{sec:reliability}
+
+% Concerning the reliability, which we define as the ability of the \ac{llm} to generate consistently predictable well-formed output~\cite{ai2023artificial}, we focus on the use cases where the \ac{llm} has to generate a precise output, like an exact string out of $k$ known strings (e.g., in classification), or, more importantly, it has to deal with the external environment (e.g., calling a function from an API or writing some code).
+Concerning the reliability, which we define as the ability of the \ac{llm} to \enquote{perform as required, without failure}~\cite{ai2023artificial}, we focus on the use cases where the \ac{llm} has to generate a precise output, like an exact string out of $k$ known strings (e.g., in classification), or, more importantly, it has to deal with the external environment (e.g., calling a function from an API or writing some code).
+Often, functionalities to interact with the environment are implemented with \emph{function calling}: the \ac{llm} generates a response matching a specific pattern that triggers the function call.
+The information about the functions is provided to the \ac{llm} in the context as part of the task instructions.
+
+Classification problems require that the \ac{llm} generates the correct name of the class, and the function calling approach requires that the model
+\begin{enumerate*}[label=(\arabic*)]
+    \item would generate the call,
+    \item that it would generate it when required, and
+    \item that it would generate it correctly.
+\end{enumerate*}
+However, despite the fine-tuning of the few-shot learning on samples for classification or requiring function calls, we cannot ensure that the output will comply with the desired one.
+As a result, a system that relies on the \ac{llm} taking care of, for example, calling a function to complete autonomously some workflow would lose reliability.
+
+Conversely, using \ac{lsl} can ensure that, for example, if a function call is needed, the scripted parts of the interaction will trigger that call.
+Moreover, the possibility to constrain the output will ensure that the parameters passed to the function call are syntactically correct.
+Similarly, if we need the \ac{llm} to generate some code at runtime (e.g., run some bash command to check the status of a server), we can ensure that it is at least syntactically correct and that the script is executed.
+As a result, we would have more autonomous \acp{llm} running inside more reliable systems.
+
+Despite the problem staying, the \ac{llm} introduces errors (as we further detail in \Cref{sec:remainingthreats}).
+We can ensure that everything the \ac{llm} generates will comply with the required outputs to the following steps by constraining the output to follow specific patterns.
+This can at least ensure that one of the classes to choose from is actually selected or that a function is called whenever it is needed without failing because of, e.g., missing a \texttt{`;'}.
+This avoids breaking down the entire pipeline and makes it more reliable.
+
+\begin{tcolorbox}[
+    title=Reliability, % Title of the box
+    left=1mm,
+    right=1mm,
+    top=1mm,
+    bottom=1mm,
+    fonttitle=\bfseries, % Bold title font
+    boxrule=0.5pt, % Thickness of the border
+    arc=5pt, % Corner radius
+    width=\columnwidth % Width of the box
+]
+We plan to tackle the reliability of generated content by constraining the decoding to obey a given structure or to target only a known, possibly finite, set of outputs.
+\end{tcolorbox}
+
+\subsection{Robustness}
+\label{sec:robustness}
+
+\acp{llm} are \acp{dnn} and as such they are designed to be robust, where robustness is intended as the ability to avoid spurious correlations and patterns~\cite{DBLP:books/daglib/0040158,DBLP:conf/nips/BrownMRSKDNSSAA20}.
+Nevertheless, these models are not error-proof, and often, ambiguous or poorly formulated inputs can cause them to fail.
+The same applies to use cases where there is the need for some multi-step reasoning or some additional or more updated information is needed.
+
+% Recover automatically samples for few shot and define level of granularity (if during tests the LLM works better with sequential prompting rather than end-to-end for specific task, use \ac{lsl} to script the various passages
+
+A first measure to improve robustness in these cases is to automate the use of the techniques we presented in \Cref{sec:capabilities}.
+For example, given a known classification task where there are some reference data sets available, \ac{lsl} can offer support for automatically retrieving proper prompts and examples for few-shot learning or \ac{cot} reasoning.
+In the case of few-shot learning, it can also automatically tune the number of shots.
+Similarly, \ac{lsl} can offer tools to automatically search trusted documents and knowledge bases to add useful information to the context and help the \ac{llm} generate the correct response.
+All these features are thought to improve the robustness by automating the use of techniques designed to help the accuracy of \acp{llm}.
+
+% Self correction routines
+
+A complementary robustness measure, especially in the interaction with the external environment, can include error management.
+We can fall back to a semi-automatic process by introducing a human in the loop in case of failures.
+Otherwise, we can have the \ac{llm} try to fix the issue itself.
+If we can trace back to the point where the error was created, we can prompt the \ac{llm} to revise its response in light of the error message.
+In this sense, there already exist frameworks to use textual feedback (i.e., the error message) to have the \ac{llm} correct itself~\cite{DBLP:conf/nips/ShinnCGNY23}.
+As before, integrating these solutions in \ac{lsl} will not ensure the absence of errors, but it can improve the robustness of a system using the \ac{llm}.
+
+\begin{tcolorbox}[
+    title=Robustness, % Title of the box
+    left=1mm,
+    right=1mm,
+    top=1mm,
+    bottom=1mm,
+    fonttitle=\bfseries, % Bold title font
+    boxrule=0.5pt, % Thickness of the border
+    arc=5pt, % Corner radius
+    width=\columnwidth % Width of the box
+]
+We plan to tackle robustness in the use of \acp{llm}
+\begin{enumerate*}[label=(\roman*)]
+    \item by automating context management for few-shot learning, \ac{rag}, and \ac{cot} reasoning and
+    \item by introducing error-handling subroutines (either with self-correction or with user feedback).
+\end{enumerate*}
+\end{tcolorbox}
+
+\subsection{Trustworthiness}
+\label{sec:trustworthiness}
+
+In the following, we discuss the trustworthiness, defined as the ability of a \ac{llm} to \enquote{reflect characteristics such as truthfulness, safety, fairness, robustness, privacy, machine ethics, transparency, and accountability}~\cite{DBLP:conf/icml/Huang0WWZLGHLZL24} of applications interfacing with \acp{llm} using \ac{lsl} in terms of verification and validation (\Cref{sec:verificationandvalidation}) and in terms of explainability (\Cref{sec:explainability}).
+
+% Riprendere paper trustworthiness (quello lungo con indice che aveva mandato Raffaela)
+
+\subsubsection{Verification and Validation}
+\label{sec:verificationandvalidation}
+
+% Verify properties of (sub)dialogue constraints
+
+Introducing a structured overlay to wrap the access to the \ac{llm} with \ac{lsl} opens the chance of using formal methods to verify and validate the scripted pipelines via model-checking tools.
+In fact, while we cannot have guarantees that the model will not make errors in the predicted output, the constraints on the interaction structure (e.g., branches in the workflow) and on the generated output (e.g., code) introduced by \ac{lsl} are compatible with this kind of analysis.
+Using formal tools for verification and tools for validation allows us to add guarantees on the constraints imposed to the \ac{llm} and on the outcome of the scripts realised with \ac{lsl}~\cite{ai2023artificial}.
+For instance, one can verify that the interaction scripted with \ac{lsl} always terminates or that there are no unreachable or dead nodes in the computation graph.
+Looking at more concrete use cases, we can also verify the generated JSON to call a remote API always matches the API constraints by looking at the grammar constraining the \ac{llm} output.
+
+Moreover, we can take into account the probabilistic nature of the \ac{llm} and, where applicable, integrate testing methodologies based on
+\begin{enumerate*}[label=(\arabic*)]
+    \item fuzzying, adversarial, or evolutionary testing~\cite{DBLP:journals/corr/abs-2503-00481,DBLP:journals/tse/CorboBDLSC25} to expand the coverage automatically, and
+    \item statistical test, to provide a confidence bound on the results of the tests~\cite{DBLP:journals/corr/abs-2503-00481}.
+\end{enumerate*}
+The latter would additionally allow the use of results on the model's accuracy on a specific task or sub-task and apply probabilistic model checking to measure the likelihood of certain behaviours or outcomes.
+For example, if we need to apply sentiment analysis on a piece of text as part of a pipeline and we have a reference data set of documents, possibly coming from the same domain, we can use it to test the model, get the likelihood of committing a classification error, and use this information to verify properties of our system.
+Additionally, given insights on model calibration (i.e., how well the predicted probabilities match the model's confidence), we can perform runtime analysis for a specific input, extending the set of guarantees.
+
+\subsubsection{Explainability}
+\label{sec:explainability}
+
+% Explainability aspects
+
+% Plug in existing explainability techniques
+
+% LLM stays black box and becomes a plug and play module, but can trace back what happened in the process
+
+Explainability with \acp{dnn}, in general, and \acp{llm}, in particular, poses an important requirement to make \ac{ai}-based application more \emph{transparent}~\cite{DBLP:conf/icml/Huang0WWZLGHLZL24}.
+% Besides the transparency, which will for sure help users understand the behaviour of the application, explaibability can be also a powerful debugging tool, which is crucial in presence of complex \acp{dnn} like the Transformers underlying the \acp{llm}.
+Besides transparency, which helps users understand the application's behavior, explainability can also serve as a debugging tool by highlighting which parts of the prompt caused faulty output and allowing users to correct such parts, for example, by rephrasing ambiguous instructions.  % , which is crucial in the presence of complex \acp{dnn} like the Transformers underlying the \acp{llm}.
+
+For the scope of \ac{lsl}, we see explainability adopted in two different ways.
+The former solution is to plug in external frameworks, thus re-using pre-existing tools and approaches~\cite{DBLP:journals/tist/ZhaoCYLDCWYD24}.
+The latter solution, more specific to \ac{lsl}, is to use the structure in the interaction imposed by the script to trace back the outcome.
+The two proposed solutions are not mutually exclusive and can be combined to get better insights of what led to a specific result or prediction.
+
+%
+\begin{tcolorbox}[
+    title=Trustworthiness, % Title of the box
+    left=1mm,
+    right=1mm,
+    top=1mm,
+    bottom=1mm,
+    fonttitle=\bfseries, % Bold title font
+    boxrule=0.5pt, % Thickness of the border
+    arc=5pt, % Corner radius
+    width=\columnwidth % Width of the box
+]
+We plan to tackle trustworthiness in terms of
+\begin{enumerate*}[label=(\roman*)]
+    \item verification and validation, offering support for verification of the script code and probabilistic checking of the procedure described by the script, and
+    \item explainability, offering support for internal solutions based on the script structure and external explainability tools.
+\end{enumerate*}
+
+\end{tcolorbox}
+
+\section{Challenges}
+\label{sec:challenges}
+
+In this section, we report the challenges that we foresee to develop \ac{lsl} in terms of technical difficulties (\Cref{sec:technicalaspects}), standardisation of the interfaces (\Cref{sec:standardisation}), threats related to the use of \acp{llm} (\Cref{sec:remainingthreats}), and the ethical concerns (\Cref{sec:ethicalconcerns}).
+%At the end of each sub-section, we provide a summary card about the mentioned challenge.
+
+\subsection{Technical Barrier}
+\label{sec:technicalaspects}
+
+% Write from scratch
+% What is re-usable?
+
+Developing a scripting language like \ac{lsl} is complex, encompassing multiple \ac{se} areas including language and APIs design, concurrency, and performance~\cite{nystrom2021crafting}.
+%Coming up with a scripting language like \ac{lsl} with all the features we are suggesting is non-trivial.In fact, it covers multiple areas of \ac{se}, from language design and APIs design to concurrency and performance~\cite{nystrom2021crafting}.
+
+Designing the language with the appropriate level of abstraction is critical to ensure the right balance between expressivity, abstraction, and usability.
+% In the end, the syntax should allow to integrate script code, input templating and output constraining in a seamless way from the developer point of view, easing the management of context and the interaction with the model.
+The syntax should allow the integration of script code, input templating, and output constraining in a seamless way from the developer's point of view, easing the management of context and the interaction with the model.
+% Especially output constraining, which is critical to reliability should be analysed carefully to allow for specify both simple constraints like alternative completions to more complex constraints like the syntax of a programming language we would like the \ac{llm} to use.
+Particularly, output constraints, which are critical to reliability, should be analysed carefully to allow specifying both simple constraints, like alternative completions, to more complex constraints, like the syntax of a programming language.
+
+Similarly, designing the APIs to simplify the access to functionalities like likelihood prediction, generation, embedding, or to access other resources is fundamental to offer a complete suite to the developers.
+Thus, we need to understand which are the essential operations required to interact with the \ac{llm} and the environment.
+This is strictly connected to the standardisation challenge we introduce in \Cref{sec:standardisation}, as providing a unified interface to models and resources is essential to effectively communicate with all the components.
+
+Regarding concurrency and, more generally, performance, given the computational demand of running an \ac{llm}, being able to automatically parallelize the passages in the pipeline and pack those requests that can be run concurrently in batches is essential.
+The concurrency aspects are not limited to a single process, but also to concurrent processes characterised by different sessions and contexts, requiring careful management of which contexts are forwarded to the \ac{llm} and when to ensure optimal resource utilisation.
+Another aspect to consider is the causal nature of \acp{llm}, which enables the exploitation of caching mechanisms by reusing partially pre-processed sequences.  % , reducing computational time.
+%All these aspects should be taken into account when implementing \ac{lsl} and its interpreter.
+
+% Besides these aspects, there are those related to error handling, testing and verification and validation.
+There are also aspects related to error handling, testing, verification, and validation.
+Integrating explainability with error management and testing can help track down and solve issues by understanding whether they are related to the script code, the \ac{llm}, or both.
+Similarly, designing the tools to apply (statistical) model checking to verify and validate the script code at compile time and run-time poses a non-trivial task, even if we want to resort to external tools.
+
+\begin{tcolorbox}[
+    title=Technical barrier, % Title of the box
+    left=1mm,
+    right=1mm,
+    top=1mm,
+    bottom=1mm,
+    fonttitle=\bfseries, % Bold title font
+    boxrule=0.5pt, % Thickness of the border
+    arc=5pt, % Corner radius
+    width=\columnwidth % Width of the box
+]
+We expect the main technical challenges to come from
+\begin{enumerate*}[label=(\roman*)]
+    \item the design of \ac{lsl} to be sufficiently abstract and usable plus
+    \item the implementation of the interpreter for \ac{lsl} when addressing automatic \ac{llm} context management and resource usage optimisation.
+\end{enumerate*}
+\end{tcolorbox}
+
+\subsection{Standardization}
+\label{sec:standardisation}
+
+% Lack of standards (?)
+
+Standardizing the interfaces is crucial for several reasons, including \emph{interoperability} of different modules, \emph{consistency and predictability} of behaviours, and \emph{ease of integration}.
+In this context, we are interested in standardising two main interfaces:
+\begin{enumerate*}[label=(\arabic*)]
+    \item the interface to the \ac{llm}, obviously, and
+    \item the interface to external resources, like data sets or documents and knowledge bases.
+\end{enumerate*}
+The main challenge in these cases is either finding a good standard compatible with the most adopted solution or enforcing the adoption of a new one.
+
+% Standard interfces to LLMs expecially for the decoding
+
+% From a \ac{llm} perspective, the most adopted interface, at least for self-hosted solutions, is the one provided by \emph{HuggingFace} with the \emph{Transofrmer} library~\cite{DBLP:conf/emnlp/WolfDSCDMCRLFDS20}.
+From an \ac{llm} perspective, the most adopted interface is the one provided by \emph{HuggingFace} with the \emph{Transformer} library~\cite{DBLP:conf/emnlp/WolfDSCDMCRLFDS20}.
+Yet, there are other valid alternatives to self-host models, like llama.cpp~\cite{llama.cpp}, or to access them remotely via commercial APIs, like \emph{watsonx.ai}~\cite{https://www.ibm.com/products/watsonx-ai}.
+Moreover, larger commercial models like GPT~\cite{https://platform.openai.com/docs/api-reference/} or Gemini~\cite{https://ai.google.dev/} have their own separate interfaces.
+Large benchmark frameworks like \emph{Big Bench} and \emph{Language Model Evaluation Harness
+}~\cite{lintang_sutawika_2024_14506035} tried to propose wrappers to unify the interface to \acp{llm}, yet not all APIs or inference servers support the necessary functionalities.
+% In fact, it is crucial to have access to a scoring method to get the likelihoods predicted by the model in order to enforce decoding strategies (e.g., with a grammar) independently of the interface used with the \ac{llm}.
+In fact, it is crucial to have access to a scoring method to get the likelihoods predicted by the model to enforce decoding strategies (e.g., with a grammar) independently of the \ac{llm} implementation.
+
+% Standard interfaces to external resources
+%% Data and APIs
+
+Standardising the interface to external resources is crucial to automate many tasks.
+In fact, having standard interfaces to data sets can help automate the retrieval of samples for few-shot learning or templates for \ac{rag}.
+At the same time, having standard interfaces to document on knowledge bases can help with
+\begin{enumerate*}[label=(\roman*)]
+  \item making content generated by \acp{llm} more factual and based on evidence and
+  \item using \acp{llm} for semantic ranking and re-ranking of search results.
+\end{enumerate*}
+Given standardised templates for the tasks to which \acp{llm} can be applied to, this can enable the automation of hyper-parameter tuning (e.g., number of examples in few-shot learning) and the computation of performances for later verification and validation (see \Cref{sec:verificationandvalidation}).
+To our knowledge, there are resources with a large and diverse pool of datasets covering different domains and tasks, but none provide a standard that allows for automated evaluation.
+Moreover, the introduction of these external sources leads to the problem of identifying trusted sources, which we discuss in \Cref{sec:ethicalconcerns}.
+
+\begin{tcolorbox}[
+    title=Standardisation, % Title of the box
+    left=1mm,
+    right=1mm,
+    top=1mm,
+    bottom=1mm,
+    fonttitle=\bfseries, % Bold title font
+    boxrule=0.5pt, % Thickness of the border
+    arc=5pt, % Corner radius
+    width=\columnwidth % Width of the box
+]
+We expect standardisation challenges to be mainly related to the interfaces
+\begin{enumerate*}[label=(\roman*)]
+    \item towards the \ac{llm} due to existing frameworks and
+    \item to external resources, like data sets and document collections.
+\end{enumerate*}
+\end{tcolorbox}
+
+\subsection{Inherent Threats}
+\label{sec:remainingthreats}
+
+% Hallucinations still pose a threat (less space for hallucinating?)
+% Errors (not perfect and error prone, at least compliant)
+
+Throughout this paper, we have highlighted that \ac{lsl} cannot eliminate all threats and risks associated with the use of \acp{llm}~\cite{ai2023artificial}.
+Nevertheless, some issues can be addressed (e.g., it is possible to enforce an output template to ensure the generated content complies with a standard), and the likelihood of others occurring can be reduced (e.g., using few-shot learning to improve classification accuracy).
+
+Identifying and quantifying all the threats that cannot be neutralised poses a significant challenge.
+In fact, these threats depend on multiple factors, including the specific \ac{llm} being used and the specific tasks and subtasks that compose pipelines relying on that model.
+
+Undoubtedly, the problem of hallucinations, either in terms of factuality or in terms of faithfulness, poses the biggest risk.
+The possibility of the \ac{llm} for generating falsehoods or not sticking to some request makes the overall system seem unreliable.
+However, research in the context of hallucination detection and mitigation is advancing, although there is no definitive solution to the problem yet~\cite{DBLP:journals/csur/JiLFYSXIBMF23,DBLP:journals/corr/huangSurvey}.
+
+\begin{tcolorbox}[
+    title=Inherent threats, % Title of the box
+    left=1mm,
+    right=1mm,
+    top=1mm,
+    bottom=1mm,
+    fonttitle=\bfseries, % Bold title font
+    boxrule=0.5pt, % Thickness of the border
+    arc=5pt, % Corner radius
+    width=\columnwidth % Width of the box
+]
+We expect the main challenges in dealing with long-running threats related to the use of \acp{llm}, namely erroneous predictions and hallucinations, to arise from the difficulty in identifying and quantifying the risk of their occurrence.
+\end{tcolorbox}
+
+\subsection{Ethical Concerns}
+\label{sec:ethicalconcerns}
+
+% Point out in roadmap to take this into account before development
+
+% Ethical concerns not only in generated output, but also in replacing humans
+
+Introducing \ac{ai} in any application opens several ethical issues.
+\acp{llm} in particular introduce a well-defined set of ethical and social problems one should account for when using this technology~\cite{DBLP:journals/corr/abs-2112-04359}.
+
+Technologies aimed at automating processes using \acp{llm} often introduce problems related to \emph{job replacement} (i.e., when human tasks are delegated to some piece of software) and \emph{deskilling} (i.e., when humans lose their expertise on some tasks by stopping doing that task)~\cite{DBLP:journals/ijhci/SisonDGG24}.
+The intention of \ac{lsl} is to automate processes using \acp{llm}, but instead of replacing human experts, the intention is to use their expertise to help automate such processes leveraging their domain knowledge and experience.
+Moreover, human feedback and supervision are always crucial to ensure the proper functioning of the system.
+However, it is up to the developer of the specific application to give support to these aspects.
+%What \ac{lsl} and its ecosystem from scripting interactions with \acp{llm} can do is provide the resources to integrate easily this feedback and supervision components.
+\ac{lsl} and its ecosystem, through scripting interactions with \acp{llm}, can provide resources to easily integrate feedback and supervision components.
+
+Additionally, content generated by \acp{llm} exposes to risks related to \emph{bias} and \emph{toxicity}~\cite{10.1162/coli_a_00524}, besides \emph{misinformation} and \emph{hallucination}.
+These issues pose a threat towards the user who would be exposed to such content.
+While there is no proper way to ensure that such content is never generated, there are solutions to
+\begin{enumerate*}[label=(\roman*)]
+  \item test the predisposition of \acp{llm} to generate such content~\cite{DBLP:journals/tse/CorboBDLSC25} and measure quantitatively this predisposition and
+  \item to recognise this kind of harmful content, preventing sharing it with the user.
+\end{enumerate*}
+These tools should be integrated into the \ac{lsl} ecosystem to quantify and mitigate these risks.
+
+\begin{tcolorbox}[
+    title=Ethical concerns, % Title of the box
+    left=1mm,
+    right=1mm,
+    top=1mm,
+    bottom=1mm,
+    fonttitle=\bfseries, % Bold title font
+    boxrule=0.5pt, % Thickness of the border
+    arc=5pt, % Corner radius
+    width=\columnwidth % Width of the box
+]
+We expect the main challenges related to ethical concerns to arise from problems
+\begin{enumerate*}[label=(\roman*)]
+    \item of replacement and deskilling,
+    \item of bias and toxicity and
+    \item of misinformation and hallucinations.
+\end{enumerate*}
+\end{tcolorbox}
+
+{\color{blue}
+
+\section{Evaluation}
+\label{sec:evaluation}
+
+In this section, we describe the setup of our qualitative evaluation (\Cref{sec:design}), the results of the evaluation (\Cref{sec:results}), and the  (\Cref{sec:threats-mitigation})
+
+\subsection{Design}
+\label{sec:design}
+
+To investigate the perceived need for the abstractions introduced by \ac{lsl}, we conducted a survey-based study, a commonly adopted empirical method for capturing practitioners’ opinions, experiences, and expectations through structured questionnaires. 
+Following established guidelines for survey-based research in \ac{se}, the study was designed as a cross-sectional survey, aiming to collect a snapshot of current practices and perceptions among practitioners working with \ac{genai}ware~\cite{DBLP:conf/acsos/CalinescuMPW20,DBLP:books/sp/08/KitchenhamP08}.
+
+The overall objective of this exploratory study is to assess the relevance and usefulness of the features supported by \ac{lsl} from the perspective of practitioners. 
+In line with this goal, the survey was structured to capture three complementary aspects: current development practices for \ac{genai}ware, the challenges encountered in practice, and the perceived usefulness and potential adoption of structured approaches to defining \ac{llm} interactions. 
+This design is consistent with the use of surveys to describe existing conditions and to assess attitudes and perceived needs within a target population~\cite{DBLP:books/sp/08/KitchenhamP08}.
+
+The target population of the study consists of practitioners and researchers with experience in developing or experimenting with \ac{genai}ware. 
+Participants were recruited through convenience-based channels, including professional and academic networks, which is a common approach in exploratory surveys where the target population is difficult to enumerate precisely. 
+While this approach does not support strict statistical generalization, it enables the collection of informed opinions from possible stakeholders with relevant experience, which is appropriate given the exploratory nature of the study~\cite{DBLP:books/sp/08/KitchenhamP08}.
+
+% The survey instrument was designed iteratively to ensure clarity and relevance of the questions. 
+% Following recommended practices, the questionnaire includes both closed questions, primarily based on Likert-scale responses, and open-ended questions that allow participants to elaborate on their experiences and opinions. 
+% Closed questions were used to capture consistent assessments of perceived difficulty and usefulness across key dimensions, while open-ended questions were included to gather richer qualitative insights into challenges and adoption considerations. 
+% The design of the questions aimed to avoid ambiguity and bias, using clear and neutral wording and focusing on a single concept per item, as recommended in survey design guidelines~\cite{DBLP:conf/acsos/CalinescuMPW20,DBLP:books/sp/08/KitchenhamP08}.
+The survey instrument was designed iteratively to ensure clarity and relevance of the questions. 
+The questionnaire includes closed questions, primarily based on Likert-scale responses. 
+These questions were used to capture consistent assessments of perceived difficulty and usefulness across key dimensions. 
+The design of the questions aimed to avoid ambiguity and bias, using clear and neutral wording and focusing on a single concept per item, as recommended in survey design guidelines~\cite{DBLP:conf/acsos/CalinescuMPW20,DBLP:books/sp/08/KitchenhamP08}.
+
+The questionnaire was organized to follow a logical progression. 
+It first collected background information about participants’ roles and experience with \ac{genai}ware, ensuring that respondents were in a position to meaningfully answer the subsequent questions. 
+It then investigated current engineering practices and common pain points, providing a contextual grounding for the evaluation of \ac{lsl}. 
+Finally, the survey introduced the concept of a structured language for defining \ac{llm} interactions and elicited participants’ perceptions regarding its usefulness, benefits, and potential limitations. 
+This progression is intended to reduce bias by avoiding early priming effects and by ensuring that participants reflect on their own experience before evaluating the proposed approach.
+
+Data collection was performed through a self-administered online questionnaire, enabling participants to complete the survey asynchronously. 
+The questionnaire was designed to be concise, requiring only a few minutes to complete, in order to reduce respondent burden and improve response quality, in line with best practices for survey-based research. 
+Participation was voluntary and anonymous, and no incentives were provided. \cite{DBLP:books/sp/08/KitchenhamP08}
+The analysis of the collected data was performed looking at descriptive statistics of the closed questions. 
+
+Overall, the study design prioritizes the collection of practitioner perspectives and perceived needs rather than objective performance measurements. 
+As such, it provides qualitative and perception-based evidence regarding the relevance of the \ac{lsl} approach, complementing the illustrative examples presented earlier in the paper.
+
+\subsection{Results}
+\label{sec:results}
+
+...
+
+\subsection{Threats Mitigation}
+\label{sec:threats-mitigation}
+
+To ensure the integrity of the collected data and mitigate the risk of careless responding, we adopted several established quality control mechanisms. 
+Given the relatively small scale and limited length of the survey instrument, we did not apply question randomization, as fatigue and ordering effects were considered unlikely to substantially impact participant responses. 
+Instead, we focused on incorporating \emph{internal consistency} and \emph{attention checks} directly into the questionnaire design and subsequent analysis.
+
+Specifically, one of the survey items was intentionally negatively framed (with respect to another item in the same group) to allow the identification of inconsistent response patterns, such as uniformly selecting the same agreement level across all questions. 
+In addition, an explicit attention check was embedded within the survey, asking participants to select a particular response option to confirm that they were carefully reading the questions. 
+During data analysis, we further examined response reliability by computing the intra-individual variance across all answers; submissions exhibiting near-zero variance, indicative of repetitive or inattentive behavior, were excluded from the final dataset. 
+We also assessed the internal consistency of the measured constructs using Cronbach’s alpha.
+
+To analyze differences in perceived alignment across the seven roles, we employed a Friedman test to determine whether statistically significant differences exist at the group level, followed by post-hoc pairwise Wilcoxon signed-rank tests comparing the specialized roles against the generic \texttt{contributor} baseline.
+
+}
+
+
+\section{Roadmap} % Research agenda / Future ...
+\label{sec:roadmap}
+
+% \begin{wrapfigure}{r}{0.5\textwidth}
+\begin{figure}[!ht]
+\begin{center}
+    % \includegraphics[width=.8\columnwidth]{figures/roadmap.pdf}
+    \includegraphics[width=\columnwidth]{figures/2road2map.pdf}
+\caption{Roadmap to the development of \ac{lsl}.}
+\label{fig:roadmap}
+\end{center}
+\end{figure}
+% \end{wrapfigure}
+
+\begin{comment}
+% Vanno bene anche commenti limitati
+
+% Develop language and interpreter
+% Develop shell
+% Develop REPL
+
+% The research agenda we foresee for \ac{lsl} consists of six phases we visualise in \Cref{fig:roadmap}:
+% \begin{enumerate*}[label=(\arabic*)]
+%   \item analyse literature on prompting and constraining \acp{llm},
+%   \item analyse literature on evaluating \acp{llm},
+%   \item design scripting language,
+%   \item design interfaces and APIs,
+%   \item develop language interpreter prototype and
+%   \item review of ethical and social aspects.
+
+% The proposed agenda ...~\cite{DBLP:journals/sigsoft/PezzeCGPQ24}.
+% As happens for many processes of this kind, we do not exclude the presence of concurrent phases and the possibility to have backward and forward steps depending on the project evolution.
+
+
+The research agenda we foresee for \ac{lsl} consists of six phases we visualise in \Cref{fig:roadmap}:
+\begin{enumerate*}[label=(\arabic*)]
+  \item analyse literature on prompting and constraining \acp{llm},
+  \item analyse literature on evaluating \acp{llm},
+  \item design scripting language,
+  \item design interfaces and APIs,
+  \item develop language interpreter prototype, and
+  \item review of ethical and social aspects.
+\end{enumerate*}
+The idea is to tackle the challenges that recently emerged in \ac{se}-related \ac{ai} by applying \ac{se} to \acp{llm}~\cite{DBLP:journals/sigsoft/PezzeCGPQ24}.
+We expect the presence of concurrent or interleaved phases, depending on the project's evolution.
+
+The analysis of literature is aimed at extrapolating which are the tools and approaches currently available to interact with \acp{llm}.
+At this point, the goal is to understand how can we manage automatically the context, for example, to build few-shot learning for example, how to constrain the output efficiently, for example by automating the selection of the decoding strategy.
+At the same time we are interested in providing some expectations on the accuracy of the \ac{llm} in solving tasks and subtasks, to include this information when running through verification and validation steps or when tuning the number of shots for few-shot learning, thus we need to understand which are the benchmarks and the metrics we should use.
+
+The phases related to \ac{lsl} and API design are critical to make the language usable and extensible with additional modules and plugins.
+The language and the interfaces should be as usable as possible to help the adoption of the language and ease the integration of different models.
+The language should allow users to define tasks and sub-tasks, to format the input to the model with the usage of templates, and to define constraints on the input.
+Thus, we need to understand how all these pieces should be made available through the syntax.
+
+At the same time, implementing an efficient interpreter is critical for the overall usability.
+In fact, the interpreter should be realised to automate as much as possible interaction with the model (the script should be agnostic of the actual framework running the model), with the external resources (e.g., data sets or task templates), and to take care of low-level management of context (e.g., caching and packing requests into batches).
+Thus, we need to define all these aspects and understand how to measure quantitatively the quality of these features.
+Additionally, we need to understand how to integrate modules for verification and validation, for example, to apply (probabilistic) model checking to the process defined by a script, and for explainability, using both internal mechanisms or external frameworks~\cite{DBLP:journals/sigsoft/PezzeCGPQ24}.
+% Integrate with tools for verification and validation
+% Integrate with tools for autmatic assessment of performance
+% Integrate with explainability process
+
+Finally, concerning the review of ethical and social aspects, we consider it as a parallel phase to be carried out throughout the entire development to ensure compliance with both~\cite{DBLP:journals/sigsoft/PezzeCGPQ24}.
+In fact, given the central role of \acp{llm} in the proposed scripting language and the subsequent autonomy they are going to be given, it is important to focus on which passages are ethically safe to automate and which can be the critical spots.
+Moreover, we need to establish ways to include human feedback in this process as well to make sure that the regulation of these aspects keeps up with the evolving societal standards.
+% Identify in language design human feedback and supervison positions
+% Identify in interfaces how to test for aspects like toxicity
+% Also in interpreter development human feedback and supervision
+
+
+% this is an alternative to the original roadmap, taking a community perspective instead of describing a single project
+\section{A Roadmap for Tamed LLM Interactions (NEW)}
+\label{sec:roadmap}
+\end{comment}
+
+Building on the opportunities identified in \Cref{sec:opportunities} and the challenges outlined in \Cref{sec:challenges}, we envision a broad research roadmap towards reliable, robust, and trustworthy {\color{blue}  \ac{genai}ware}. %\ac{llm}-based systems.
+This roadmap, visualised in \Cref{fig:roadmap}, outlines research directions for the community at large and highlights how language design, API development, interpreter infrastructures, usability, and ethical oversight must come together.
+
+% \subsection{Foundational Directions}
+\paragraph{Foundational Work}
+The development of languages and abstractions will allow for structured interactions with \acp{llm}.
+This includes the design of domain-specific languages such as \ac{lsl}, which can provide formalisms for scripting, constraining, and reasoning about LLM interactions.
+The community will need to explore various levels of abstraction, ranging from low-level APIs for fine-grained control to high-level declarative interfaces that prioritize usability and accessibility.
+Alongside the language itself, the definition of open and standardized APIs is critical.
+Such interfaces should unify access to prompt management, structured outputs, context handling, and integration with external resources such as datasets or knowledge bases, thereby fostering interoperability and extensibility.
+
+% \subsection{Benchmarks and Evaluation Frameworks}
+\paragraph{Benchmarks and Evaluation Frameworks}
+Improving the reliability and robustness of {\color{blue}  \ac{genai}ware} %\ac{llm}-based systems 
+requires a shift from ad-hoc testing to systematic evaluation practices.
+Research is needed to define benchmarks and metrics that extend beyond model accuracy and capture safety, correctness, and alignment with user expectations.
+Evaluation should not be limited to \acp{llm} in isolation but applied to the pipelines and applications in which they are embedded.
+Probabilistic testing, adversarial evaluation, and methods for runtime validation of generated outputs are especially promising directions.
+By establishing common benchmarks and frameworks, the community can enable more rigorous comparisons across tools and systems, foster reproducibility, and accelerate progress.
+
+% \subsection{Efficient Interpreters}
+\paragraph{Interpreters}
+Interpreter infrastructures form the backbone of scripted \ac{llm} interactions and require dedicated research attention.
+Efficient interpreters should be capable of managing context automatically, exploiting opportunities for caching and batching, and orchestrating parallel execution where tasks allow.
+They must also balance usability and performance, providing developers with intuitive abstractions while optimizing resource utilization under the hood.
+This line of research naturally connects with the design of compiler and runtime systems, yet introduces unique challenges related to the causal nature of LLMs and the integration of external resources.
+An interpreter that is both efficient and transparent will be decisive in making scripted \ac{llm} systems practical at scale.
+
+% \subsection{Trustworthiness and Human-Centric Design}
+\paragraph{Trustworthiness \& Human-centric Design}
+Usability studies, mechanisms for domain experts to shape system behavior, and frameworks for ensuring meaningful human control should become an integral part of {\color{blue}  \ac{genai}ware}. %\ac{llm}-based systems.
+Human feedback must not be treated as an afterthought, but rather be integrated systematically to guide error handling and evaluation.
+Explainability tools should be embedded into workflows to allow developers and users to trace outputs, debug prompts, and build confidence in the system's behavior.
+At the same time, ethical and social concerns like bias, toxicity, misinformation, deskilling, and job displacement require continuous monitoring and proactive mitigation strategies.
+Addressing these aspects is essential to ensure trustworthiness and long-term societal acceptance.
+
+% \subsection{Standardisation and Ecosystem Building}
+\paragraph{Standardisation \& Ecosystems}
+Standardisation represents another key frontier.
+Just as MLOps practices evolved to bring order to machine learning pipelines, the community now needs standards for promptware, prompt and data versioning, and lifecycle management of {\color{blue}  \ac{genai}ware}. %\ac{llm}-based systems.
+Without such common ground, development practices will remain fragmented and inconsistent.
+Beyond formal standards, an interoperable ecosystem of tools must emerge.
+Instead of today's patchwork of isolated frameworks, we need cohesive toolchains that integrate scripting, monitoring, testing, verification, and ethical safeguards into the everyday workflows of developers.
+
+\smallskip
+Beyond this roadmap, our long-term vision is to embed \ac{llm} scripting and interaction into the broader DevOps lifecycle.
+In such a future, prompts, data, and scripts will be treated as first-class citizens alongside code, benefiting from the same rigor in versioning, testing, and verification.
+Verification, monitoring, and human oversight will be embedded throughout development and deployment pipelines, ensuring that reliability and transparency are not afterthoughts but built-in guarantees.
+This vision requires the construction of sustainable ecosystems in which {\color{blue}  \ac{genai}ware} %\ac{llm}-powered systems 
+can be designed, deployed, and maintained with the same degree of trust, robustness, and societal accountability as traditional software.
+
+\begin{comment}
+\section{Conclusion}
+\label{sec:conclusion}
+
+% Summary
+% Understanding that this is not a step back to previous NLP approaches (?)
+% Can we go even beyond this and introduce self-reapairing passages?
+% If the formal part is good, then the output of the model must be wronf, can we give a feedback and ask to self correct?
+% Integration of multimodality? (e.g., need to extract text from an image, speech input or output for accessibilty, etc.)
+% Left aside multimodality for the moment.
+
+\acp{llm} represent valuable assets to build \ac{ai}-powered applications.
+Nevertheless, they come with several risks and limitations that prevent to freely adopt them into fully automated pipelines and workflows.
+With this paper, we presented our vision of what advances \ac{se} tools and frameworks can bring to \ac{ai} in terms of
+\begin{enumerate*}[label=(\roman*)]
+  \item reliability,
+  \item robustness, and
+  \item trustworthiness
+\end{enumerate*}
+of the underlying \ac{llm}.
+The key idea is to develop a \ac{dsl} working as a scripting language, namely \ac{lsl}, to automate the templating of the input prompt and the constraining of the generated completions of the \ac{llm} to enforce guarantees on the \ac{llm} behaviour.
+An interpreter complements \ac{lsl} managing the \ac{llm} context, the interfaces towards the model and the external resources, and error correction subroutines as well as as running consistency checks and producing explanations when needed.
+
+Summarising our vision, we plan to constrain \ac{llm} outputs to address reliability by automatically exploiting their capabilities (namely, few-shot learning, \ac{rag}, and \ac{cot} reasoning) and by introducing error handling loops.
+We address \ac{llm} robustness through verification and validation of script code, and through the generation of explanations, we address trustworthiness.
+In terms of challenges throughout the development, we expect to deal with the technical aspects immediately related to the design of the language and the implementation of the interpreter, with the lack of common standards and interfaces towards models and resources, with the difficulty in quantifying and identifying sources of risks commonly associated to the use of \acp{llm} (errors and hallucinations) and with the ethical concerns related as well to the use of \acp{llm}.
+\end{comment}
+
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+\acp{llm} represent valuable assets to build \ac{ai}-powered applications.
+Nevertheless, they come with several risks and limitations that prevent to freely adopt them into fully automated pipelines and workflows.
+Throughout this paper, we have argued that \ac{se} plays a decisive role in addressing these limitations.
+
+%By introducing concepts such as \ac{lsl}, we illustrated how domain-specific languages, verification and validation techniques, explainability, and human feedback can tame \ac{llm} interactions.
+
+%Beyond this single proposal, however, our work points to a broader research agenda for the community.
+
+The core idea is to develop a \ac{dsl} that works as a scripting language, namely \ac{lsl}, to automate the templating of the input prompt and the constraining of the generated completions of the \ac{llm} to enforce guarantees on the \ac{llm} behaviour.
+An interpreter complements \ac{lsl} in multiple ways, like
+\begin{enumerate*}
+    \item managing the \ac{llm} context,
+    \item managing the interfaces towards the model and the external resources,
+    \item managing error correction subroutines,
+    \item running consistency checks, and
+    \item producing explanations when needed.
+\end{enumerate*}
+
+Building on that, we outlined a roadmap that spans foundational directions in language and API design, the development of benchmarks and evaluation frameworks, the creation of efficient interpreter infrastructures, the integration of human-centric feedback and usability studies, and the establishment of standards and ecosystems that can bring order to today’s fragmented practices. This agenda emphasizes that progress requires not only technical innovations but also attention to social, ethical, and organizational challenges, so that trustworthiness, transparency, and societal accountability are built into \ac{llm}-powered systems ({\color{blue}  \ac{genai}ware}) from the outset.
+
+% The long-term vision is to embed \ac{llm} scripting and interaction into the broader DevOps lifecycle. In such a future, prompts, data, and scripts will be treated as first-class citizens alongside code, benefiting from the same rigor in versioning, testing, and verification. Verification, monitoring, and human oversight will be embedded throughout development and deployment pipelines, ensuring that reliability and transparency are not afterthoughts but built-in guarantees. This vision requires the construction of sustainable ecosystems in which \ac{llm}-powered systems can be designed, deployed, and maintained with the same degree of trust, robustness, and societal accountability as traditional software.
+
+%\clearpage
+
+%%
+%% The acknowledgments section is defined using the "acks" environment
+%% (and NOT an unnumbered section). This ensures the proper
+%% identification of the section in the article metadata, and the
+%% consistent spelling of the heading.
+\begin{comment}
+\begin{acks}
+This work was supported by funding from the pilot program Core Informatics at KIT (KiKIT) of the Helmholtz Association (HGF) and supported by the German Research Foundation (DFG) - SFB 1608 - 501798263 and KASTEL Security Research Labs, Karlsruhe.
+\end{acks}
+\end{comment}
+
+% \clearpage
+
+%%
+%% The next two lines define the bibliography style to be used, and
+%% the bibliography file.
+\bibliographystyle{ACM-Reference-Format-num}
+\bibliography{bibliography}
+
+
+%%
+%% If your work has an appendix, this is the place to put it.
+\begin{comment}
+\appendix
+
+\section{Title}
+TODO
+\end{comment}
+
+\end{document}
+\endinput
+%%
+%% End of file `sample-sigconf-authordraft.tex'.
