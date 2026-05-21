@@ -399,11 +399,9 @@ Moreover, these open models are often also released in larger versions~\cite{DBL
 Open-access \acp{llm} are mainly distributed, sharing the neural network weights learned during the pre-training.
 Often, to make these pre-trained models usable as assistants (like ChatGPT), they are \emph{fine-tuned} (i.e., refined via further training) to behave as \emph{instruction-following} agents or \emph{chatbot-assistants}~\cite{DBLP:conf/iclr/SanhWRBSACSRDBX22,DBLP:journals/corr/abs-2210-11416,DBLP:journals/csur/ScottiST24} by training on conversations (or other interactions) where a user and an agent communicate via natural language to solve some tasks.
 Typically, the fine-tuning data is formatted using a specific template, where the input is a sequence composed of:
-\begin{enumerate*}[label=(\arabic*)]
-  \item \emph{system message} (main task instructions, which can also be chatbot directives);
-  \item \emph{user message} (user's input to be processed, question, or request);
-  \item \emph{agent response} (agent's output or response to user's question or request).
-\end{enumerate*}
+\emph{system message} (main task instructions, which can also be chatbot directives);
+\emph{user message} (user's input to be processed, question, or request);
+\emph{agent response} (agent's output or response to user's question or request).
 Each sample in the data set contains one or more message-response exchanges between the user and the agent (\ac{llm}) covering multiple tasks, multiple steps within a task, or to handle user corrections.
 Alternatively, other models are distributed as coding assistants, like in the case of \emph{Copilot}~\cite{github2023copilot} or \emph{Code Llama}~\cite{DBLP:journals/corr/abs-2308-12950}, where fine-tuning is used to refine the model on source code generation, which is, however, a capability most pre-trained or assistant \acp{llm} already have.
 Differently from the past years, where fine-tuning was used to adapt a pre-trained model to a very specific task like classification (often modifying the architecture)~\cite{radford2018improving,DBLP:conf/naacl/DevlinCLT19}, nowadays prompting (i.e., instructing the model via natural language) is preferred to solve most problems with \acp{llm} and fine-tuning is applied very rarely. % and preserving the generative nature of the \ac{llm}.
@@ -461,11 +459,9 @@ From a practical perspective, \acp{llm} are used by prompting with some prefix t
 
 An \ac{llm} can be prompted to tackle problems in different ways.
 The main prompting approaches, which we report in \Cref{fig:llm}, are:
-\begin{enumerate*}[label=(\roman*)]
- \item \emph{few-shot learning} (sometimes called in-context learning)~\cite{DBLP:conf/nips/BrownMRSKDNSSAA20},
- \item \emph{Retrieval Augmented Generation} (RAG)~\cite{DBLP:journals/corr/abs-2312-10997}, and
- \item \emph{Chain of Thought} (CoT) \emph{reasoning}~\cite{DBLP:conf/nips/KojimaGRMI22}.
-\end{enumerate*}
+\emph{few-shot learning} (sometimes called in-context learning)~\cite{DBLP:conf/nips/BrownMRSKDNSSAA20},
+\emph{Retrieval Augmented Generation} (RAG)~\cite{DBLP:journals/corr/abs-2312-10997}, and
+\emph{Chain of Thought} (CoT) \emph{reasoning}~\cite{DBLP:conf/nips/KojimaGRMI22}.
 Few-shot learning, depicted in \Cref{fig:llm_fsl}, consists of providing additional examples of input-output pairs (the shots) together with the task instructions as part of the prompt, helping the \ac{llm} better \enquote{understand} the task and the expected output format.
 This is an example of the ability of \acp{llm} to generalize from limited data.
 RAG, depicted in \Cref{fig:llm_rag}, consists of automatically extending the input context by integrating information coming from external knowledge sources and, thus, allowing the model to ground its output responses in this relevant information.
@@ -493,10 +489,8 @@ In such settings, a \ac{llm} is prompted with explicit goals, contextual system 
 These issues range from architectural limitations to problems with the generated content.
 
 From the \ac{dnn} architecture side, we identify two main issues:
-\begin{enumerate*}[label=(\arabic*)]
-  \item context size (i.e., the maximum number of consecutive tokens a model can manage) and
-  \item computational complexity.
-\end{enumerate*}
+context size (i.e., the maximum number of consecutive tokens a model can manage) and
+computational complexity.
 Even though in the last few years we have seen an increase in techniques designed to extend physically or virtually the maximum context, the problem of having a finite context still remains, and, especially in smaller models, the attention doesn't keep up well when the context grows excessively.
 Moreover, the computation of the \emph{self-attention mechanism} (core of the Transformer) is quadratic in time to the length of the input.
 There are caching mechanisms and alternative implementations~\cite{DBLP:journals/corr/abs-2112-05682,DBLP:conf/nips/DaoFERR22,DBLP:conf/iclr/Dao24} to cope with these issues, but they aren't always usable.
@@ -969,12 +963,10 @@ For these cases, we foresee the integration of tools to trace the source of the 
 \ac{lsl} is designed for \emph{prompt programming in \ac{genai}ware systems}, where the primary abstraction is not computation over data, but structured interaction with a probabilistic model. 
 In such systems, prompts, context, and output constraints jointly determine the behaviour of the underlying foundation model and must therefore be treated as first-class software artifacts~\cite{llm_se_roadmap}.
 
-The design of \ac{lsl} is guided by three core principles: 
-\begin{enumerate*}[label=(\roman*)]
-  \item \emph{interaction-centricity}, 
-  \item \emph{explicit context and constraints}, and
-  \item \emph{analyzability over expressiveness}.
-\end{enumerate*}
+The design of \ac{lsl} is guided by three core principles:
+\emph{interaction-centricity},
+\emph{explicit context and constraints}, and
+\emph{analyzability over expressiveness}.
 \ac{lsl} programs describe \emph{interaction workflows} rather than purely algorithmic computations. 
 Each program consists of a sequence of interactions between deterministic software components and a \ac{llm}, where each interaction is explicitly defined and scoped.
 Moreover, \ac{lsl} treats context construction, scoping, and evolution as explicit language constructs, and similarly elevates output constraints to first-class elements. This reflects the central role of context engineering and output constraining in \ac{genai}ware development~\cite{llm_se_roadmap}.
