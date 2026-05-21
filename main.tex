@@ -1777,8 +1777,8 @@ As such, it provides qualitative and perception-based evidence regarding the rel
 \subsection{Results}
 \label{sec:results}
 
-The survey received 21 responses; after applying the quality control mechanisms described in \Cref{sec:threats-mitigation}, 20 valid responses were retained for analysis.
-The following paragraphs report descriptive results for each section of the questionnaire, with figures organised by thematic block.
+The survey received $21$ responses, one was discarded as the respondent has never worked with \acp{llm} is software systems, $n = 20$ valid responses were retained for analysis.
+Hereafter we report descriptive results for each section of the questionnaire, with figures organised according to the survey sections.
 
 \begin{figure}
     \centering
@@ -1791,10 +1791,10 @@ The following paragraphs report descriptive results for each section of the ques
 \end{figure}
 
 \Cref{fig:sec1} summarises the background profile of the respondents.
-All 20 participants reported having worked with \acp{llm} in software systems (Q1): 15~(75\%) in a research or prototyping context, and 5~(25\%) in production systems.
-Regarding primary role (Q2), the sample comprised 13 researchers~(65\%) and 7 software engineers~(35\%).
-In terms of experience with \ac{genai}ware (Q3), half of the respondents~(10, 50\%) reported 1--2 years, and 8~(40\%) reported 3--5 years; only 2~(10\%) had less than one year, and none reported more than five.
-Regarding self-reported domain knowledge (Q4), 13 respondents~(65\%) described themselves as \emph{knowledgeable} and 5~(25\%) as \emph{highly knowledgeable}; 2 respondents~(10\%) reported being \emph{unaware} of the topic.
+All 20 participants reported having worked with \acp{llm} in software systems (Q1): $15$~($75\%$) in a research or prototyping context, and $5$~($25\%$) in production systems.
+Regarding primary role (Q2), the sample comprised $13$ researchers~($65\%$) and $7$ software engineers~($35\%$).
+In terms of experience with \ac{genai}ware (Q3), half of the respondents~($10$, $50\%$) reported $1$--$2$ years, and $8$~($40\%$) reported $3$--$5$ years; only $2$~($10\%$) had less than one year, and none reported more than five.
+Regarding self-reported domain knowledge (Q4), $13$ respondents~($65\%$) described themselves as \emph{knowledgeable} and $5$~($25\%$) as \emph{highly knowledgeable}; $2$ respondents~($10\%$) reported being \emph{unaware} of the topic.
 Overall, the sample reflects a technically informed population with moderate-to-high familiarity with \ac{llm}-based development.
 
 \begin{figure}
@@ -1806,10 +1806,10 @@ Overall, the sample reflects a technically informed population with moderate-to-
 \end{figure}
 
 \Cref{fig:sec2} shows the responses regarding current development practices.
-Prompt templates (e.g., f-strings, Jinja2) are the most widely adopted technique (Q5), used by 17~respondents~(85\%), followed by hardcoded prompts embedded in application code (12, 60\%) and \ac{llm} orchestration frameworks such as LangChain or Semantic Kernel (11, 55\%).
-Only 3~respondents~(15\%) reported using \ac{dsl}-like tools for structured generation, and one respondent~(5\%) relied on low-code or no-code platforms.
+Prompt templates (e.g., f-strings, Jinja2) are the most widely adopted technique (Q5), used by $17$~respondents~($85\%$), followed by hardcoded prompts embedded in application code ($12$, $60\%$) and \ac{llm} orchestration frameworks such as LangChain or Semantic Kernel ($11$, $55\%$).
+Only $3$~respondents~($15\%$) reported using \ac{dsl}-like tools for structured generation, and one respondent~($5\%$) relied on low-code or no-code platforms.
 This confirms that the use of structured, language-level abstractions remains uncommon in practice.
-Regarding where interaction logic is managed (Q6), the majority (12, 60\%) handle it in a mixed fashion, combining different locations; 5~respondents~(25\%) use separate files or templates, and 3~(15\%) keep it inline in application code.
+Regarding where interaction logic is managed (Q6), the majority ($12$, $60\%$) handle it in a mixed fashion, combining different locations; $5$~respondents~($25\%$) use separate files or templates, and $3$~($15\%$) keep it inline in application code.
 
 \begin{figure}
     \centering
@@ -1818,12 +1818,13 @@ Regarding where interaction logic is managed (Q6), the majority (12, 60\%) handl
     \label{fig:sec3}
 \end{figure}
 
-Question~8 served as an embedded attention check (see \Cref{sec:threats-mitigation}); all 20 retained respondents answered it correctly, confirming the attentiveness of the sample.
 \Cref{fig:sec3} reports perceived pain points when developing \ac{genai}ware (Q7).
-The strongest agreement was recorded for Q7f (\emph{Separating deterministic logic from \ac{llm} behaviour would help}; $\bar{x} = 4.05$, $\mathrm{SD} = 0.69$), with 80\% of respondents agreeing or strongly agreeing---directly motivating one of the core design choices of \ac{lsl}.
-Q7e (\emph{Maintaining and evolving \ac{llm} interaction logic is challenging}; $\bar{x} = 3.70$) and Q7b (\emph{Debugging \ac{llm} pipelines is difficult}; $\bar{x} = 3.60$) also received predominantly positive agreement, with 60\% and 55\% of respondents rating them \emph{Agree} or \emph{Strongly agree}, respectively.
-Q7c (\emph{Invalid outputs propagate and break downstream components}; $\bar{x} = 3.50$) showed similarly high agreement~(65\%), while Q7d (\emph{Hard to enforce structure or constraints}; $\bar{x} = 3.25$) drew more mixed responses.
-In contrast, Q7a (\emph{Prompt logic is difficult to understand and reason about}; $\bar{x} = 2.70$) was the only item where a majority~(50\%) disagreed, suggesting that practitioners do not yet perceive the readability of prompt text itself as a primary challenge.
+The strongest agreement was recorded for Q7f (\emph{Separating deterministic logic from \ac{llm} behaviour would help}; $\bar{x} = 4.05$, $\mathrm{SD} = 0.69$), with $80\%$ of respondents agreeing or strongly agreeing, directly motivating one of the core design choices of \ac{lsl}.
+Q7e (\emph{Maintaining and evolving \ac{llm} interaction logic is challenging}; $\bar{x} = 3.70$) and Q7b (\emph{Debugging \ac{llm} pipelines is difficult}; $\bar{x} = 3.60$) also received predominantly positive agreement, with $60\%$ and $55\%$ of respondents rating them \emph{Agree} or \emph{Strongly agree}, respectively.
+Q7c (\emph{Invalid outputs propagate and break downstream components}; $\bar{x} = 3.50$) showed similarly high agreement~($65\%$), while Q7d (\emph{Hard to enforce structure or constraints}; $\bar{x} = 3.25$) drew more mixed responses.
+In contrast, Q7a (\emph{Prompt logic is difficult to understand and reason about}; $\bar{x} = 2.70$) was the only item where a majority~($50\%$) disagreed, suggesting that practitioners do not yet perceive the readability of prompt text itself as a primary challenge.
+
+Question~8 served as an embedded attention check (see \Cref{sec:threats-mitigation}); all 20 retained respondents answered it correctly, confirming the attentiveness of the sample.
 
 \begin{figure}
     \centering
@@ -1832,11 +1833,11 @@ In contrast, Q7a (\emph{Prompt logic is difficult to understand and reason about
     \label{fig:sec5}
 \end{figure}
 
-\Cref{fig:sec5} shows the perceived usefulness of specific \ac{lsl} features (Q9, rated 1--5 with higher values indicating greater usefulness).
-Built-in validation of outputs (Q9d) received the highest mean rating ($\bar{x} = 4.05$, $\mathrm{SD} = 1.05$), with 75\% of respondents assigning a score of 4 or 5.
-Output constraints via schemas or grammars (Q9c) were also rated highly ($\bar{x} = 3.95$), with 70\% of respondents scoring 4 or above.
+\Cref{fig:sec5} shows the perceived usefulness of specific \ac{lsl} features (Q9, rated $1$--$5$ with higher values indicating greater usefulness).
+Built-in validation of outputs (Q9d) received the highest mean rating ($\bar{x} = 4.05$, $\mathrm{SD} = 1.05$), with $75\%$ of respondents assigning a score of $4$ or $5$.
+Output constraints via schemas or grammars (Q9c) were also rated highly ($\bar{x} = 3.95$), with $70\%$ of respondents scoring 4 or above.
 The separation between \ac{llm} calls and control logic (Q9e; $\bar{x} = 3.65$) and an explicit representation of interaction workflows (Q9a; $\bar{x} = 3.40$) similarly scored above the neutral midpoint.
-Static analysis of interaction logic (Q9b) received the lowest mean rating ($\bar{x} = 3.20$), though still above neutral, with 40\% of respondents rating it 4 or above.
+Static analysis of interaction logic (Q9b) received the lowest mean rating ($\bar{x} = 3.20$), though still above neutral, with $40\%$ of respondents rating it $4$ or above.
 Overall, all five features were rated above neutral, indicating broad appreciation of the \ac{lsl} feature set.
 
 \begin{figure}
@@ -1849,15 +1850,15 @@ Overall, all five features were rated above neutral, indicating broad appreciati
 \end{figure}
 
 \Cref{fig:sec6} reports participants' reactions to the \ac{lsl} concept.
-Regarding overall perceived usefulness (Q10), the mean rating was 3.70 ($\mathrm{SD} = 0.92$, median~$= 4$), with 60\% of respondents assigning a score of 4 or 5 and no respondent rating the concept as not useful at all~(1).
-Regarding expected benefits (Q11), respondents were broadly positive: ease of maintenance (Q11c; $\bar{x} = 3.90$) and improvements to testing and verification (Q11d; $\bar{x} = 3.80$) received the highest endorsement, with 70\% of respondents agreeing or strongly agreeing on both items.
-Improvements to debugging (Q11a; $\bar{x} = 3.65$) were supported by 60\% of respondents, and reliability improvements (Q11b; $\bar{x} = 3.50$) by 40\%.
-The two negatively framed items---serving as internal consistency indicators---showed consistently low agreement: Q11e (\emph{No benefit is expected}; $\bar{x} = 1.95$) was rejected by 75\% of respondents, and Q11f (\emph{Finding bugs will be harder}; $\bar{x} = 2.45$) by 50\%, confirming coherent response patterns.
-Regarding adoption concerns (Q12), integration with existing tools (Q12b; $\bar{x} = 4.20$, $\mathrm{SD} = 0.83$) emerged as the primary concern, with 85\% of respondents reporting being \emph{concerned} or \emph{very concerned}.
-Limited flexibility of the \ac{dsl} (Q12d; $\bar{x} = 3.95$) was the second most prominent concern~(80\% concerned or very concerned).
+Regarding overall perceived usefulness (Q10), the mean rating was 3.70 ($\mathrm{SD} = 0.92$, median~$= 4$), with $60\%$ of respondents assigning a score of 4 or 5 and no respondent rating the concept as not useful at all~(1).
+Regarding expected benefits (Q11), respondents were broadly positive: ease of maintenance (Q11c; $\bar{x} = 3.90$) and improvements to testing and verification (Q11d; $\bar{x} = 3.80$) received the highest endorsement, with $70\%$ of respondents agreeing or strongly agreeing on both items.
+Improvements to debugging (Q11a; $\bar{x} = 3.65$) were supported by $60\%$ of respondents, and reliability improvements (Q11b; $\bar{x} = 3.50$) by $40\%$.
+The two negatively framed items, serving as internal consistency indicators, showed consistently low agreement: Q11e (\emph{No benefit is expected}; $\bar{x} = 1.95$) was rejected by $75\%$ of respondents, and Q11f (\emph{Finding bugs will be harder}; $\bar{x} = 2.45$) by $50\%$, confirming coherent response patterns.
+Regarding adoption concerns (Q12), integration with existing tools (Q12b; $\bar{x} = 4.20$, $\mathrm{SD} = 0.83$) emerged as the primary concern, with $85\%$ of respondents reporting being \emph{concerned} or \emph{very concerned}.
+Limited flexibility of the \ac{dsl} (Q12d; $\bar{x} = 3.95$) was the second most prominent concern~($80\%$ concerned or very concerned).
 The learning curve (Q12a; $\bar{x} = 3.25$) and the question of whether such a language is actually necessary (Q12e; $\bar{x} = 2.85$) raised moderate concerns, while performance overhead (Q12c; $\bar{x} = 2.95$) showed the most mixed distribution of responses.
 
-Finally, a Mann--Whitney U test comparing researchers ($n = 13$) and software engineers ($n = 7$) found no statistically significant differences across any of the four construct blocks (Q7: $U = 38.5$, $p = 0.60$; Q9: $U = 40.0$, $p = 0.69$; Q11: $U = 53.5$, $p = 0.54$; Q12: $U = 32.0$, $p = 0.30$), indicating consistent perceptions across roles; statistical power is however limited by the small sample size, and these results should be interpreted accordingly.
+Finally, a Mann-Whitney U test comparing researchers ($n = 13$) and software engineers ($n = 7$) found no statistically significant differences across any of the four construct blocks (Q7: $U = 38.5$, $p = 0.60$; Q9: $U = 40.0$, $p = 0.69$; Q11: $U = 53.5$, $p = 0.54$; Q12: $U = 32.0$, $p = 0.30$), indicating consistent perceptions across roles; statistical power is however limited by the sample size, and these results should be interpreted accordingly.
 
 \subsection{Threats Mitigation}
 \label{sec:threats-mitigation}
@@ -1871,7 +1872,7 @@ In addition, an explicit attention check was embedded within the survey, asking 
 During data analysis, we further examined response reliability by computing the intra-individual variance across all answers; submissions exhibiting near-zero variance, indicative of repetitive or inattentive behavior, were excluded from the final dataset. 
 We also assessed the internal consistency of the measured constructs using Cronbach’s alpha.
 
-To analyze differences in perceived alignment across the seven roles, we employed a Friedman test to determine whether statistically significant differences exist at the group level, followed by post-hoc pairwise Wilcoxon signed-rank tests comparing the specialized roles against the generic \texttt{contributor} baseline.
+To analyze differences in perceived alignment across the responding roles, we employed a Friedman test to determine whether statistically significant differences exist at the group level, followed by post-hoc pairwise Wilcoxon signed-rank tests comparing the specialized roles against the generic \texttt{contributor} baseline.
 
 }
 
