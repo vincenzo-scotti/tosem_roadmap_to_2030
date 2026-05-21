@@ -71,6 +71,8 @@
 % \usepackage[subtle]{savetrees}
 \usepackage{makecell}
 \usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
 % Commands
 % Definitions
 \acrodef{ai}[AI]{Artificial Intelligence}
@@ -710,6 +712,73 @@ Finally, we comment on the expected user base of our \ac{dsl} (\Cref{sec:stakeho
 \end{center}
 \end{figure}
 % \end{wrapfigure}
+
+\begin{figure}
+    \centering
+
+    \begin{tikzpicture}[
+        node distance=.5cm and 1.5cm,
+        box/.style={draw, rounded corners, align=center, minimum width=3cm, minimum height=1cm},
+        smallbox/.style={draw, rounded corners, align=center, minimum width=2.6cm, minimum height=0.8cm},
+        arrow/.style={->, thick}
+    ]
+    
+    % --- Input ---
+    \node[box] (script) {LSL Script \\ (Interaction Program)};
+    
+    % --- Core Framework ---
+    \node[box, below=of script] (interpreter) {Interpreter / Compiler};
+    \node[box, below left=of interpreter] (runtime) {Runtime \\ Environment};
+    \node[box, below right=of interpreter] (testenv) {Test \\ Environment};
+    
+    % --- Analysis Layer ---
+    \node[box, right=4cm of interpreter] (analysis) {Verification \& Validation};
+    \node[smallbox, below=of analysis] (static) {Static Analysis};
+    \node[smallbox, below=of static] (runtimeval) {Runtime Validation};
+    \node[smallbox, above=of analysis] (grammar) {Grammar \& Constraints};
+    
+    % --- LLM Layer ---
+    \node[box, below=3cm of runtime] (llmwrap) {LLM Interface / Wrapper};
+    \node[smallbox, below=of llmwrap] (llm) {LLM Engines};
+    
+    % --- Resource Layer ---
+    \node[box, right=4cm of llmwrap] (resources) {Resource Manager};
+    \node[smallbox, below=of resources] (rag) {RAG Data / APIs};
+    \node[smallbox, above=of resources] (auth) {Source Validation};
+    
+    % --- Testing Data ---
+    \node[box, below right=of testenv] (bench) {Benchmark \& Prompt Repository};
+    
+    % --- Connections ---
+    \draw[arrow] (script) -- (interpreter);
+    
+    \draw[arrow] (interpreter) -- (runtime);
+    \draw[arrow] (interpreter) -- (testenv);
+    
+    \draw[arrow] (runtime) -- (llmwrap);
+    \draw[arrow] (llmwrap) -- (llm);
+    
+    \draw[arrow] (runtime) -- (resources);
+    \draw[arrow] (resources) -- (rag);
+    
+    \draw[arrow] (testenv) -- (bench);
+    
+    % Analysis connections
+    \draw[arrow] (script) -- (analysis);
+    \draw[arrow] (analysis) -- (runtime);
+    \draw[arrow] (static) -- (analysis);
+    \draw[arrow] (runtimeval) -- (analysis);
+    \draw[arrow] (grammar) -- (analysis);
+    
+    % Optional feedback loops
+    \draw[arrow, dashed] (runtimeval) -- (runtime);
+    \draw[arrow, dashed] (analysis) -- (interpreter);
+    
+    \end{tikzpicture}
+    
+    \caption{Caption}
+    \label{fig:placeholder}
+\end{figure}
 
 We propose \ac{lsl}: a \ac{dsl} to format and constrain the input and output of an \ac{llm}.
 The idea is to develop a scripting language, its interpreter and the surrounding development tools to improve the guarantees on many aspects concerning the use of \acp{llm} and make them more autonomous.
@@ -1909,6 +1978,10 @@ Building on that, we outlined a roadmap that spans foundational directions in la
 % The long-term vision is to embed \ac{llm} scripting and interaction into the broader DevOps lifecycle. In such a future, prompts, data, and scripts will be treated as first-class citizens alongside code, benefiting from the same rigor in versioning, testing, and verification. Verification, monitoring, and human oversight will be embedded throughout development and deployment pipelines, ensuring that reliability and transparency are not afterthoughts but built-in guarantees. This vision requires the construction of sustainable ecosystems in which \ac{llm}-powered systems can be designed, deployed, and maintained with the same degree of trust, robustness, and societal accountability as traditional software.
 
 %\clearpage
+
+\section*{Data Availability}
+
+The replication package of our experiments is available at \url{https://github.com/vincenzo-scotti/tosem_roadmap_to_2030}.
 
 %%
 %% The acknowledgments section is defined using the "acks" environment
