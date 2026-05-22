@@ -703,6 +703,7 @@ Finally, we comment on the expected user base of our \ac{dsl} (\Cref{sec:stakeho
 \end{figure}
 % \end{wrapfigure}
 
+\begin{comment}
 \begin{figure}
     \centering
 
@@ -769,6 +770,7 @@ Finally, we comment on the expected user base of our \ac{dsl} (\Cref{sec:stakeho
     \caption{Caption}
     \label{fig:placeholder}
 \end{figure}
+\end{comment}
 
 We propose \ac{lsl}: a \ac{dsl} to format and constrain the input and output of an \ac{llm}.
 The idea is to develop a scripting language, its interpreter and the surrounding development tools to improve the guarantees on many aspects concerning the use of \acp{llm} and make them more autonomous.
@@ -987,9 +989,9 @@ The fundamental unit of computation is the \emph{interaction block}, representin
     breakatwhitespace=true
 ]
 def classify_sentiment(text: str)
-    Classify the sentiment of the given text  # Preamble (write implicit)
-    Q: '''\n{text}\n'''                       # Input (write implicit)
-    read A: {positive|negative|neutral}       # Output
+    write Classify the sentiment of the given text  # Preamble
+    write Q: '''\n{text}\n'''                       # Input
+    read A: {positive|negative|neutral}             # Output
 end def
 \end{lstlisting}
 
@@ -1009,9 +1011,17 @@ Context scopes define which information is visible to the model:
     showstringspaces=false,
     breakatwhitespace=true
 ]
-context review_context:
-    include user_review
-    exclude previous_responses
+@context(sys_message, history: list[mapping[str, str]])
+def chat()
+    while true
+        {sys_message}                                                # Preamble
+        {history[-2:]}                                               # Keep only last two messages
+        let message: str = read User: {user}
+        append(history, {"role": "user", "content": message})
+        let response: str = read Assistant: {}
+        append(history, {"role": "assistant", "content": response})
+        clear                                                        # Clear context
+    end while
 \end{lstlisting}
 
 This prevents unintended accumulation of context and enables reasoning about information dependencies.
@@ -1034,8 +1044,8 @@ import json
 ...
 
 def extract_entities(document: str): json[list[str]]
-    Extract entities from the given document                 # Preamble (write implicit)
-    '''\n{text}\n'''                                         # Input
+    Extract entities from the given document                           # Preamble (write implicit)
+    '''\n{text}\n'''                                                   # Input (write implicit)
     let entities: json[list[str]] = read Entities:\n{json[list[str]]}  # Output "```json\n...\n```"
     return entities
 end def
@@ -1057,7 +1067,9 @@ import sql
 
 ...
 
-def generate_sql(entities: list(str), attributes: mapping(str, list[str], relationships: list[tuple[str, str, str])
+def generate_sql(
+    entities: list(str), attributes: mapping(str, list[str], relationships: list[tuple[str, str, str]
+)
     Create a SQL database given the following entities and relationships.
     Entities
     for let e: str in entities
@@ -1102,10 +1114,10 @@ end def
 
 let response: str
 if detect_query(message) do
-    let docs: list[str] <- search(message)
+    let docs: list[str] = search(message)
     response = answer_with_docs(message, docs)
 else
-    response = (message)
+    response = answer(message)
 endif
 
 ...
@@ -1133,9 +1145,9 @@ end def
 ...
 
 def generate_code(spec: str, tests: list[callable[python[str]]): str
-    Write a Python function with the following specifications.  # Preamble
-    {spec}                                                      # Input
-    let code: python[str] = read {python[str]}
+    Write a Python function with the following specifications.  # Preamble (write implicit)
+    {spec}                                                      # Input (write implicit)
+    let code: python[str] = read {python[str]}                  # Output
     let counter: int = 0
     try
         label retry
@@ -1143,7 +1155,7 @@ def generate_code(spec: str, tests: list[callable[python[str]]): str
             t(code)
         on error:
             code = correct(spec, code, error)
-            if counter <= 2
+            if counter <= 2 do
                 counter += 1
                 goto retry
             end if
@@ -1170,8 +1182,6 @@ This execution model introduces a clear separation between conventional control 
 % \paragraph{Example.}
 Consider a two-step workflow:
 
-% TODO from here
-
 \begin{lstlisting}[
     backgroundcolor=\color{gray!10},
     basicstyle=\ttfamily\small,
@@ -1182,10 +1192,23 @@ Consider a two-step workflow:
     showstringspaces=false,
     breakatwhitespace=true
 ]
-let sentiment = classify_sentiment(review)
+def classify_sentiment(text: str): [positive|negative|neutral]
+    ...
+end def
+
+def summarize_issue(text: str): str
+    ...
+end def
+
+...
+
+let sentiment: [positive|negative|neutral] = classify_sentiment(review)
 if sentiment == "negative" do
-    let summary = summarize_issue(review)
-endif
+    let summary: str = summarize_issue(review)
+    ...
+end if
+
+...
 \end{lstlisting}
 
 This corresponds to two interaction blocks evaluated sequentially, with explicit data flow between them.
@@ -1208,13 +1231,17 @@ Context is explicitly constructed and scoped for each interaction.
     showstringspaces=false,
     breakatwhitespace=true
 ]
-def answer_with_docs(user_message,
-                     documents):
-    Q: Answer the user referring to
-       the documents when appropriate:
-       "{user_message}"
-       Documents: {documents}
-    A: [response]
+@context(history: list[mapping[str, str])
+def answer_with_docs(documents: list[str]): str
+    let message str: history[-1]["content"]
+    new                                                                              # Start new context
+    Answer the following message referring to the given documents when appropriate.  # Preamble
+    Reference documents:
+    for let doc: str in documents:
+        '''\n{doc}\n'''
+    Q: {message}                                                                     # Input
+    let response: str = read {response}                                              # Output
+    return response
 end def
 \end{lstlisting}
 
@@ -1234,11 +1261,10 @@ Output validity is defined by conformance to constraints.
     showstringspaces=false,
     breakatwhitespace=true
 ]
-def detect_query(message):
-    Q: Is the user asking a query
-       in this message "{message}"?
-    A: {yes|no}
-    if output == "yes" do
+def detect_query(message): bool
+    Q: Is the user asking a query in this message: "{message}"?
+    let response: [yes|no] = A: {yes|no}
+    if response == "yes" do
         return true
     else
         return false
@@ -1271,6 +1297,10 @@ For example, given a grammar-constrained output:
     showstringspaces=false,
     breakatwhitespace=true
 ]
+import json
+import api_service_xyz
+
+% TODO change this
 def call_api(intent, params):
     Q: Generate the API call for:
        intent="{intent}",
@@ -1795,7 +1825,7 @@ We expect the main challenges related to ethical concerns to arise from problems
 \section{Evaluation}
 \label{sec:evaluation}
 
-In this section, we describe the setup of our qualitative evaluation (\Cref{sec:design}), the results of the evaluation (\Cref{sec:results}), and the  (\Cref{sec:threats-mitigation})
+In this section, we describe the setup of our qualitative evaluation (\Cref{sec:design}), the results of the evaluation (\Cref{sec:results}), and the mitigations for the possible threats to the validity (\Cref{sec:threats-mitigation}).
 
 \subsection{Design}
 \label{sec:design}
