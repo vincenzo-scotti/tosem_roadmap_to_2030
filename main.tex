@@ -1298,14 +1298,16 @@ For example, given a grammar-constrained output:
     breakatwhitespace=true
 ]
 import json
-import api_service_xyz
+import service_xyz
 
-% TODO change this
-def call_api(intent, params):
-    Q: Generate the API call for:
-       intent="{intent}",
-       params={params}
-    A: [call | json_api_call_syntax]
+...
+
+def call_api(intent: str, params: json[mapping[str, str]])
+    Generate the API call for the given intent and parameters.  # Preamble (write implicit)
+    Intent: {intent}                                            # Input (write implicit)
+    Parameters: {params}
+    let call: service_xyz[json] = read {service_xyz[json]}      # Output
+    call()
 end def
 \end{lstlisting}
 
