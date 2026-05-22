@@ -591,7 +591,7 @@ In this sense, \emph{Haystack}~\cite{https://github.com/deepset-ai/haystack} rep
 With a specific focus on reliability and robustness, we mostly depend on inference engines or frameworks.
 Solutions like \emph{Llama CPP} and \emph{Llama CPP Python}~\cite{llama.cpp,llama.cpp.python} offers many low-level functionalities for templating the input and capturing elements of the output.
 Unlike other existing inference engines and tools, Llama CPP allows specifying a \emph{generative grammar} to constrain the generated completions.
-{\color{blue} We talk in these cases of \emph{grammar constrained decoding}~\cite{DBLP:conf/emnlp/GengJP023}.}
+{\color{blue} We talk in these cases of \emph{grammar-constrained decoding}~\cite{DBLP:conf/emnlp/GengJP023}.}
 The closest tool in this sense is \emph{Guidance}~\cite{guidance-ai/guidance} that offers a templating system well blended into Python syntax and the possibility to specify capture groups to be automatically applied to the output and to specify a finite list of alternative completions to select from.
 However, most of these tools rely only on HuggingFace's Transformers API or use their own custom interfaces.
 {\color{blue} Prior work shows that \ac{llm}-generated artifacts frequently contain structural defects, including malformed code, incomplete outputs, and inconsistencies across steps, even when they are functionally plausible~\cite{DBLP:conf/icsm/AbbassiSNK25}.}
@@ -696,8 +696,9 @@ Finally, we comment on the expected user base of our \ac{dsl} (\Cref{sec:stakeho
 \begin{figure}[!ht]
 \begin{center}
     % \includegraphics[width=.931\columnwidth]{figures/idea.pdf}
-    \includegraphics[width=.69825\columnwidth]{figures/idea.pdf}
-\caption{Idea behind \ac{lsl}: the domain expert uses the \ac{dsl} to write scripts for different tasks, end users accessing their \ac{ai}-powered applications or servers running their \ac{ai}-powered applications interact with the \ac{llm} selecting the script corresponding to the required functionality.}
+    % \includegraphics[width=.69825\columnwidth]{figures/idea.pdf}
+    \includegraphics[width=.755\columnwidth]{figures/idea2.pdf}
+\caption{{\color{blue} Idea behind \ac{lsl}: the script is converted into an application bunding an executable (which is ingested by the runtime environment) and the support material composed of the constraints to satisfy and the tests to validate the program behaviour (which are ingested by the verification and validation environment). The data interface provide access to datasets (for benchmarking, performance estimate, etc.) and to resources (document bases, knowledge bases, etc.), the inference interface warps the access to the \ac{llm}.}}
 % \caption{Intended use of \ac{lsl} by domain experts to script interactions with \acp{llm} for \ac{ai}-powered applications.}
 \label{fig:idea}
 \end{center}
