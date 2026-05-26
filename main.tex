@@ -245,7 +245,7 @@
 However, their probabilistic nature and reliance on prompt programming introduce challenges for reliability, robustness, and maintainability. 
 In current practice, prompt-related concerns, such as context management, interaction logic, and output validation, are embedded in general-purpose code, resulting in implicit and hard-to-analyze and maintain systems.
 In this paper, we argue that prompt programming should be treated as a first-class \ac{se} concern and propose the \ac{lsl}, a \ac{dsl} for structuring interactions with \acp{llm} as analyzable programs. 
-\ac{lsl} introduces explicit abstractions for interaction blocks, context scopes, output constraints, and control flow, enabling a clear separation between deterministic logic and probabilistic model behavior, and providing guarantees on structural correctness. 
+\ac{lsl} introduces explicit abstractions for interaction blocks, context scopes, output constraints, and control flow, enabling a clear separation between deterministic logic and probabilistic model behavior, and providing compliance with syntactic rules. 
 From an \ac{se} perspective, \ac{lsl} supports a more disciplined development process by making interaction logic explicit, analyzable, and amenable to verification and validation techniques. 
 At the same time, \ac{lsl} acts as a form of cognitive scaffolding, externalizing prompt design and interaction structure into a programmable artifact that reduces implicit documentation and reasoning and thereby supports systematic debugging, evolution and reuse.
 We illustrate these properties on a structured generation scenario, showing how explicit interaction modeling improves failure localization and interaction transparency. 
@@ -306,7 +306,8 @@ The advancements in \ac{genai}~\cite{llm_se_roadmap}, and in particular \acp{llm
 Beyond their role as development-time assistants or copilots~\cite{github2023copilot}, \acp{llm} are increasingly embedded directly into software products to realize functionality that would otherwise be infeasible or too expensive to implement~\cite{llm_se_roadmap}.
 In such \emph{\ac{genai}ware} systems~\cite{llm_se_roadmap}, foundation models are invoked at runtime as integral software components, powering capabilities such as conversational interfaces, information retrieval, content generation, and adaptive decision support~\cite{DBLP:journals/corr/abs-2406-10300}.
 As a result, software systems are no longer defined solely by code and data, but also by \emph{prompts} (i.e., natural language instructions) that govern the behavior of these models.
-At the same time, developers are now facing new challenges arising from inconsistencies and quality issues in generated artifacts as well as development and maintainability problems~\cite{10.1145/3806396,DBLP:journals/tosem/ChenGCZL25,DBLP:conf/icsm/AbbassiSNK25}
+This shift introduces new \ac{se} challenges, as developers must now reason about artifacts that are inherently non-deterministic, difficult to validate, and hard to maintain.
+In practice, this leads to issues such as inconsistencies in generated outputs, propagation of invalid results, and increased difficulty in debugging and evolving \ac{llm}-based systems~\cite{10.1145/3806396,DBLP:journals/tosem/ChenGCZL25,DBLP:conf/icsm/AbbassiSNK25}.
 
 Recent research has observed that prompts in \ac{genai}ware are no longer simple textual inputs, but are becoming meticulously engineered parts of the codebase, effectively functioning as programs themselves~\cite{DBLP:journals/pacmse/LiangLRM25,llm_se_roadmap}.
 These prompts encode \emph{task definitions}, \emph{interaction protocols}, \emph{constraints}, and \emph{expectations about model outputs}, and they critically shape the behavior of the overall system.
@@ -323,7 +324,7 @@ Existing languages and frameworks are expressive enough: prompt templates can be
 What these approaches cannot provide is a clear separation between deterministic software logic and probabilistic model behavior.
 When prompt programming is embedded in general-purpose code, interaction logic becomes implicit, verification targets become unclear, and static analysis is practically infeasible, because conventional control flow is interleaved with probabilistic \ac{llm} invocations in ways the host language cannot reason about.
 
-In \ac{genai}ware systems, developers therefore have limited means to inspect the structure of interactions with \acp{llm}, to enforce invariants on generated outputs, or to reason about the behavior of prompt-driven workflows over time.
+In \ac{genai}ware systems, developers therefore face increased difficulty in inspecting the structure of interactions with \acp{llm}, enforcing invariants on generated outputs, and reasoning about the behavior of prompt-driven workflows over time.
 As systems grow in complexity, this lack of analyzable structure undermines reliability, maintainability, and trustworthiness, and prevents the systematic application of good \ac{se} practices such as verification, validation, and lifecycle management.
 
 In this paper, we argue that addressing these challenges requires treating prompt programming as a \emph{first-class} \ac{se} concern, and that doing so demands dedicated programming abstractions, not merely libraries, that make prompt behavior
@@ -336,7 +337,7 @@ In this paper, we argue that addressing these challenges requires treating promp
 As such, we propose the concept of \ac{lsl}: a \ac{dsl} designed to express prompt-based interactions as structured programs.
 Rather than replacing general-purpose programming languages or existing \ac{genai} frameworks, \ac{lsl} defines a \emph{restricted interaction layer} that sits between deterministic software and probabilistic foundation models.
 % TODO: is the following too much?
-In this sense, \ac{lsl} is intended to play a role analogous to SQL for databases or regular expressions for pattern matching: it does not supersede host languages, but provides a specialized abstraction that makes reasoning, optimization, and verification tractable in ways that would be impractical in unrestricted general-purpose code.
+In this sense, \ac{lsl} is intended to play a role analogous to SQL for databases or regular expressions for pattern matching: it does not supersede host languages, but provides a specialized abstraction that makes reasoning, optimization, and verification amenable in ways that would be impractical in unrestricted general-purpose code.
 
 \ac{lsl} is intended to define prompts as executable specifications.
 It provides constructs to structure interactions with \acp{llm}, manage and scope context, constrain outputs, and orchestrate multi-step workflows involving both model invocations and conventional software components.
@@ -705,75 +706,6 @@ Finally, we comment on the expected user base of our \ac{dsl} (\Cref{sec:stakeho
 \end{figure}
 % \end{wrapfigure}
 
-\begin{comment}
-\begin{figure}
-    \centering
-
-    \begin{tikzpicture}[
-        node distance=.5cm and 1.5cm,
-        box/.style={draw, rounded corners, align=center, minimum width=3cm, minimum height=1cm},
-        smallbox/.style={draw, rounded corners, align=center, minimum width=2.6cm, minimum height=0.8cm},
-        arrow/.style={->, thick}
-    ]
-    
-    % --- Input ---
-    \node[box] (script) {LSL Script \\ (Interaction Program)};
-    
-    % --- Core Framework ---
-    \node[box, below=of script] (interpreter) {Interpreter / Compiler};
-    \node[box, below left=of interpreter] (runtime) {Runtime \\ Environment};
-    \node[box, below right=of interpreter] (testenv) {Test \\ Environment};
-    
-    % --- Analysis Layer ---
-    \node[box, right=4cm of interpreter] (analysis) {Verification \& Validation};
-    \node[smallbox, below=of analysis] (static) {Static Analysis};
-    \node[smallbox, below=of static] (runtimeval) {Runtime Validation};
-    \node[smallbox, above=of analysis] (grammar) {Grammar \& Constraints};
-    
-    % --- LLM Layer ---
-    \node[box, below=3cm of runtime] (llmwrap) {LLM Interface / Wrapper};
-    \node[smallbox, below=of llmwrap] (llm) {LLM Engines};
-    
-    % --- Resource Layer ---
-    \node[box, right=4cm of llmwrap] (resources) {Resource Manager};
-    \node[smallbox, below=of resources] (rag) {RAG Data / APIs};
-    \node[smallbox, above=of resources] (auth) {Source Validation};
-    
-    % --- Testing Data ---
-    \node[box, below right=of testenv] (bench) {Benchmark \& Prompt Repository};
-    
-    % --- Connections ---
-    \draw[arrow] (script) -- (interpreter);
-    
-    \draw[arrow] (interpreter) -- (runtime);
-    \draw[arrow] (interpreter) -- (testenv);
-    
-    \draw[arrow] (runtime) -- (llmwrap);
-    \draw[arrow] (llmwrap) -- (llm);
-    
-    \draw[arrow] (runtime) -- (resources);
-    \draw[arrow] (resources) -- (rag);
-    
-    \draw[arrow] (testenv) -- (bench);
-    
-    % Analysis connections
-    \draw[arrow] (script) -- (analysis);
-    \draw[arrow] (analysis) -- (runtime);
-    \draw[arrow] (static) -- (analysis);
-    \draw[arrow] (runtimeval) -- (analysis);
-    \draw[arrow] (grammar) -- (analysis);
-    
-    % Optional feedback loops
-    \draw[arrow, dashed] (runtimeval) -- (runtime);
-    \draw[arrow, dashed] (analysis) -- (interpreter);
-    
-    \end{tikzpicture}
-    
-    \caption{Caption}
-    \label{fig:placeholder}
-\end{figure}
-\end{comment}
-
 We propose \ac{lsl}: a \ac{dsl} to format and constrain the input and output of an \ac{llm}.
 The idea is to develop a scripting language, its interpreter and the surrounding development tools to improve the guarantees on many aspects concerning the use of \acp{llm} and make them more autonomous.
 The interpreter running the script should interact with the \ac{llm} either communicating with it locally or remotely in a seamless way to the user.
@@ -796,10 +728,20 @@ The intended uses of the scripting language are
     \item formatting input prompt to the \ac{llm};
     \item constraining output completion of the \ac{llm}.
 \end{enumerate*}
-As we show in \Cref{fig:idea}, we are designing this \ac{dsl} to be used by experts who need to integrate \ac{ai} in their applications or services.
+% As we show in \Cref{fig:idea}, we are designing this \ac{dsl} to be used by experts who need to integrate \ac{ai} in their applications or services.
+% The experts use \ac{lsl} to write scripts to automate some pipeline, part of an application, using \acp{llm}.
+% The end user, or other services, can benefit from these \ac{ai}-based applications using these pipelines.
+% Given that \acp{llm} can generate any output sequence, as their vocabulary covers everything that can be written with \emph{Unicode}, the scripts and the applications can be agnostic of the underlying \ac{llm} and frameworks.
+{\color{blue}
+We are designing this \ac{dsl} to be used by experts who need to integrate \ac{ai} in their applications or services.
 The experts use \ac{lsl} to write scripts to automate some pipeline, part of an application, using \acp{llm}.
-The end user, or other services, can benefit from these \ac{ai}-based applications using these pipelines.
-Given that \acp{llm} can generate any output sequence, as their vocabulary covers everything that can be written with \emph{Unicode}, the scripts and the applications can be agnostic of the underlying \ac{llm} and frameworks.
+The end user, or other services, can benefit from these \ac{ai}-based applications using these pipelines. 
+In \Cref{fig:idea} we provide an high-level view of the development environment.
+An \ac{lsl} script already contains all the essential information to generate some form of executable (which basically is the \ac{genai}ware) together with the information to constrain the input and output and to validate the interactions automatically.
+All this can be generated and packed together by the language interpreter into a \ac{lsl} application.
+The runtime environment and the verification and validation environment work together during execution to run the application while enforcing and monitoring the runtime behaviour during the interactions.
+Interfaces are provided both on the \ac{llm} side, to provide inference, and to the data side, to allow the use of both datasets (for testing, calibration, few-shot learning, etc.) and external resources (like document bases, knowledge graphs, etc.).
+}
 
 \begin{figure}[!ht]
     \centering
